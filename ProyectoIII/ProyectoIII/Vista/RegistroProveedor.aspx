@@ -14,7 +14,7 @@
 <body class="bg-light">
     <div class="container" style="max-width: 480px">
         <div class="py-5 text-center">
-            <h2>Registro de Compradores</h2>
+            <h2>Registro de Proveedor</h2>
         </div>
 
         <div>

@@ -9,7 +9,8 @@ namespace ProyectoIII.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Operaciones op = new Operaciones();
+            op.accesos("RegistroComprador");
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)

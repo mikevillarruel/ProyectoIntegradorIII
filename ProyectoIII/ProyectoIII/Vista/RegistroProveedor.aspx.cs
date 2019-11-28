@@ -13,6 +13,8 @@ namespace ProyectoIII.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Operaciones op = new Operaciones();
+            op.accesos("RegistroProveedor");
 
         }
 

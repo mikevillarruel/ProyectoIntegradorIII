@@ -83,5 +83,46 @@ namespace ProyectoIII.Modelo
 
         }
 
+        public Boolean accesos(string nombrePantalla)
+        {
+            try
+            {
+                int accesos = 0;
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "select accesos from estadistica_ingreso where nombre_pantalla='" + nombrePantalla + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+
+                if (odr.Read())
+                {
+                    accesos = (int)odr.GetDecimal(0) + 1;
+
+                    oracleCommand = conn.CreateCommand();
+                    oracleCommand.CommandText = "update estadistica_ingreso set accesos='" + accesos + "' where nombre_pantalla='" + nombrePantalla + "'";
+                    oracleCommand.CommandType = CommandType.Text;
+                    oracleCommand.ExecuteNonQuery();
+                    return true;
+                }
+                else
+                {
+                    accesos = accesos + 1;
+                    oracleCommand = conn.CreateCommand();
+                    oracleCommand.CommandText = "insert into estadistica_ingreso (nombre_pantalla,accesos)" +
+                        "VALUES ('" + nombrePantalla + "','" + accesos + "')";
+                    oracleCommand.CommandType = CommandType.Text;
+                    oracleCommand.ExecuteNonQuery();
+                    return true;
+                }
+
+                
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+
     }
 }
