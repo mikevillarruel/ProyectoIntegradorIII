@@ -9,13 +9,12 @@ namespace ProyectoIII.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Operaciones op = new Operaciones();
-            op.accesos("RegistroComprador");
+            
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Comprador comprador = new Comprador(Int32.Parse(id.Value), nombre.Value, apellido.Value, cedula.Value, usuario.Value, contrasenia.Value, ciudad.Value, 1, email.Value, direccion.Value, telefono.Value, new DateTime(2017, 2, 23));
+            Comprador comprador = new Comprador(0, nombre.Value, apellido.Value, cedula.Value, usuario.Value, contrasenia.Value, ciudad.Value, 1, email.Value, direccion.Value, telefono.Value, new DateTime(2017, 2, 23));
             Servicio servicio = new Servicio();
             string script;
             if (servicio.insertComprador(comprador))

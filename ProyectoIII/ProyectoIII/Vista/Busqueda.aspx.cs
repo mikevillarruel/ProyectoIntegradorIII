@@ -8,8 +8,7 @@ namespace ProyectoIII
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Operaciones op = new Operaciones();
-            op.accesos("Busqueda");
+
         }
 
         protected void btnAumentar_Click(object sender, EventArgs e)

@@ -24,15 +24,6 @@ namespace ProyectoIII.Vista
         protected global::System.Web.UI.HtmlControls.HtmlForm insertSellerForm;
 
         /// <summary>
-        /// Control id.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl id;
-
-        /// <summary>
         /// Control telefono.
         /// </summary>
         /// <remarks>
@@ -57,7 +48,7 @@ namespace ProyectoIII.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText contrasenia;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword contrasenia;
 
         /// <summary>
         /// Control nombre.

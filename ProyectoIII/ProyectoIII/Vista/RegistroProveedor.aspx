@@ -21,11 +21,6 @@
             <form id="insertSellerForm" runat="server" class="needs-validation">
 
                 <div class="mb-3">
-                    <label for="id">ID</label>
-                    <input runat="server" type="number" class="form-control" id="id" min="1" required />
-                </div>
-
-                <div class="mb-3">
                     <label for="firstName">Nombre</label>
                     <input runat="server" type="text" pattern="[A-Z][A-Za-z]{1,32}" class="form-control" id="nombre" required />
                 </div>
@@ -40,7 +35,7 @@
                 <div class="mb-3">
                     <label for="password">Contraseña</label>
                     <div class="input-group">
-                        <input runat="server" type="text" pattern="[A-Za-z0-9-_]{4,32}" class="form-control" id="contrasenia" required />
+                        <input runat="server" type="password" pattern="[A-Za-z0-9-_]{4,32}" class="form-control" id="contrasenia" required />
                     </div>
                 </div>
 

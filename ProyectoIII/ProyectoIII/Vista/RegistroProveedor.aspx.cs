@@ -13,14 +13,12 @@ namespace ProyectoIII.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Operaciones op = new Operaciones();
-            op.accesos("RegistroProveedor");
-
+            
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Proveedor proveedor = new Proveedor(Int32.Parse(id.Value), nombre.Value, direccion.Value, ciudad.Value, telefono.Value, email.Value, usuario.Value, contrasenia.Value);
+            Proveedor proveedor = new Proveedor(0,nombre.Value, direccion.Value, ciudad.Value, telefono.Value, email.Value, usuario.Value, contrasenia.Value);
             Servicio servicio = new Servicio();
             string script;
             if (servicio.insertProveedor(proveedor))
