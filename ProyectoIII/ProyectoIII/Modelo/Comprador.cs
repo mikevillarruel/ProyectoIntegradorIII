@@ -8,6 +8,7 @@ namespace ProyectoIII.Modelo
 
         public Comprador()
         {
+            /*Hola Mayrilla*/
         }
 
         public Comprador(DateTime fechaDeNacimiento)
