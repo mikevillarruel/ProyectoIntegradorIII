@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using proyecto.Modelo;
 using proyecto.Controlador;
+using proyecto.Modelo;
 
-namespace proyecto.Vista.webfonts
+namespace proyecto.Vista
 {
-    public partial class RegistroComprador : System.Web.UI.Page
+    public partial class RegistroAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,11 +18,10 @@ namespace proyecto.Vista.webfonts
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            DateTime aDate = DateTime.ParseExact(fechaDeNacimiento.Value, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-            Comprador comprador = new Comprador(0, nombre.Value, apellido.Value, cedula.Value, usuario.Value, contrasenia.Value, ciudad.Value, 2, email.Value, direccion.Value, telefono.Value, aDate);
+            Persona persona = new Persona(0, nombre.Value, apellido.Value, cedula.Value, usuario.Value, contrasenia.Value, ciudad.Value, 1, email.Value, direccion.Value, telefono.Value);
             Servicio servicio = new Servicio();
             string script;
-            if (servicio.insertComprador(comprador))
+            if (servicio.insertAdministrador(persona))
             {
                 script = @"<script type='text/javascript'>                
                 alert('Registro Correcto');

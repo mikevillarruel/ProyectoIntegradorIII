@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="indexA.aspx.cs" Inherits="proyecto.Vista.indexA" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Upload-Products.aspx.cs" Inherits="proyecto.Vista.Upload_Products" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Welcome to SIPROE</title>
+    <title>CheckOut - Siproe</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -35,6 +35,13 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+        .auto-style1 {
+            left: 0px;
+            top: 0px;
+        }
+    </style>
 
 </head>
 
@@ -83,7 +90,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="indexA.aspx"><img src="images/logo.png" class="logo" alt="" style="width:150px;height:100px;"></a>
+                    <a class="navbar-brand" href="indexP.aspx"><img src="images/logo.png" class="logo" alt="" style="width:150px;height:100px;"></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -91,11 +98,13 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 
-                        <li class="nav-item active"><a class="nav-link" href="indexA.aspx">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="indexP.aspx">Home</a></li>
                         
-                        <li class="nav-item"><a class="nav-link" href="add-products.aspx">Añadir productos</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="add-products.aspx">Add Products</a></li>
                         
-                        <li class="nav-item"><a class="nav-link" href="report.aspx">Reportes de venta</a></li>
+                        <li class="nav-item"><a class="nav-link" href="my-products.aspx">My Products</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="pending-orders.aspx">Pending Orders</a></li>
 
                         <!--
                         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
@@ -113,51 +122,56 @@
     </header>
     <!-- End Main Top -->
 
-
-
-    <!-- Start Slider -->
-    <div id="slides-shop" class="cover-slides">
-        <ul class="slides-container">
-            <li class="text-center">
-                <img src="images/banner-clothes-1.png" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> SIPROE</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="images/banner-makeup-2.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> SIPROE</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="images/banner-kitchen-3.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> SIPROE</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <div class="slides-navigation">
-            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
         </div>
     </div>
-    <!-- End Slider -->
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Add new product</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3>Producto</h3>
+                        </div>
+                        <form class="needs-validation" novalidate runat="server">
+                             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                             <asp:FileUpload ID="FileUpload1" runat="server" />
+                             <asp:Button ID="btnLogin" runat="server" Text="Subir" OnClick="btnLogin_Click" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Cart -->
+
+
+
+
 
     <!-- Start copyright  -->
     <div class="footer-copyright">

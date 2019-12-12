@@ -38,6 +38,12 @@
 				<form class="login100-form validate-form" runat="server">
 					
 					<div class="w-full text-center">
+						<a href="   RegistroAdmin.aspx" class="txt3">
+							Administrador
+						</a>
+					</div>
+
+					<div class="w-full text-center">
 						<a href="   RegistroComprador.aspx" class="txt3">
 							Comprador
 						</a>
@@ -48,6 +54,8 @@
 							Proveedor
 						</a>
 					</div>
+
+
 				</form>
 
 				<div class="login100-more" style="background-image: url('imagesl/bg-01.jpg');"></div>

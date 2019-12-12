@@ -200,9 +200,11 @@
     <Content Include="Vista\pending-orders.aspx" />
     <Content Include="Vista\php\form-process.php" />
     <Content Include="Vista\registerT.aspx" />
+    <Content Include="Vista\RegistroAdmin.aspx" />
     <Content Include="Vista\RegistroProveedor.aspx" />
     <Content Include="Vista\report.aspx" />
     <Content Include="Vista\shop.aspx" />
+    <Content Include="Vista\Upload-Products.aspx" />
     <Content Include="Vista\vendorl\animate\animate.css" />
     <Content Include="Vista\vendorl\animsition\css\animsition.css" />
     <Content Include="Vista\vendorl\animsition\css\animsition.min.css" />
@@ -247,6 +249,7 @@
     <Compile Include="Modelo\Conexion.cs" />
     <Compile Include="Modelo\Operaciones.cs" />
     <Compile Include="Modelo\Persona.cs" />
+    <Compile Include="Modelo\Producto.cs" />
     <Compile Include="Modelo\Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vista\add-products.aspx.cs">
@@ -347,6 +350,13 @@
     <Compile Include="Vista\registerT.aspx.designer.cs">
       <DependentUpon>registerT.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\RegistroAdmin.aspx.cs">
+      <DependentUpon>RegistroAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroAdmin.aspx.designer.cs">
+      <DependentUpon>RegistroAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\RegistroProveedor.aspx.cs">
       <DependentUpon>RegistroProveedor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -374,6 +384,13 @@
     </Compile>
     <Compile Include="Vista\RegistroComprador.aspx.designer.cs">
       <DependentUpon>RegistroComprador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Upload-Products.aspx.cs">
+      <DependentUpon>Upload-Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Upload-Products.aspx.designer.cs">
+      <DependentUpon>Upload-Products.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

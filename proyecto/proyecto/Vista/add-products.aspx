@@ -36,6 +36,13 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style type="text/css">
+        .auto-style1 {
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -149,60 +156,65 @@
                         <div class="title-left">
                             <h3>Producto</h3>
                         </div>
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" novalidate runat="server">
                             <div class="mb-3">
                                 <label for="username">Nombre del producto *</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="username" placeholder="" required>
+                                    <input runat="server" type="text" class="form-control" id="nombreP" required />
                                     <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email">Descripcion *</label>
-                                <input type="email" class="form-control" id="email" placeholder="">
+                                <input runat="server" type="text" class="form-control" id="descripcionP" required />
                                 <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Precio *</label>
-                                <input type="text" class="form-control" id="address" placeholder="" required>
-                                <div class="invalid-feedback"> Please enter your shipping address. </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address2">Categoria *</label>
-                                <input type="text" class="form-control" id="address2" placeholder="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="address">Imagen *</label>
-                                <input type="text" class="form-control" id="address" placeholder="" required>
+                                <input runat="server" type="text" class="form-control" id="precioP" required />
                                 <div class="invalid-feedback"> Please enter your shipping address. </div>
                             </div>
 
-                            <hr class="mb-1"> </form>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-6 mb-3">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                            <div class="shipping-method-box">
-                                <div class="title-left">
-                                    <h3>Cargar un archivo</h3>
-                                </div>
-                                <div class="mb-4">
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio">
-                                        <label class="custom-control-label" for="shippingOption1">Standard Delivery</label> <span class="float-right font-weight-bold">FREE</span> </div>
-                                    <div class="ml-4 mb-2 small">(3-7 business days)</div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption2">Express Delivery</label> <span class="float-right font-weight-bold">$10.00</span> </div>
-                                    <div class="ml-4 mb-2 small">(2-4 business days)</div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption3" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption3">Next Business day</label> <span class="float-right font-weight-bold">$20.00</span> </div>
-                                </div>
+                            <div class="mb-3">
+                                <label for="address2">Categoria *</label>
+                                <asp:DropDownList ID="categorias" runat="server">
+                                    <asp:ListItem>Ropa</asp:ListItem>
+                                    <asp:ListItem>Maquillaje</asp:ListItem>
+                                    <asp:ListItem>Utensillos de cocina</asp:ListItem>
+                                    <asp:ListItem>Libros</asp:ListItem>
+                                    <asp:ListItem>Computadoras</asp:ListItem>
+                                    <asp:ListItem>Salud</asp:ListItem>
+                                    <asp:ListItem>Joyeria</asp:ListItem>
+                                    <asp:ListItem>Musica</asp:ListItem>
+                                    <asp:ListItem>Juegos</asp:ListItem>
+                                </asp:DropDownList>
+                                <!--
+                                <label for="address2">Categoria *</label>
+                                <input type="text" class="form-control" id="address2" placeholder="">-->
                             </div>
-                        </div>
-                        <div class="col-12 d-flex shopping-box"> <a href="checkout.aspx" class="ml-auto btn hvr-hover">Place Order</a> </div>
+                            <!--
+                            <div class="mb-3">
+                                <label for="address">Imagen *</label>
+                                <input runat="server" type="text" class="form-control" id="imagenP" required />
+                                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                            </div>
+                            -->
+                            <div class="mb-3">
+                                <label for="address">Imagen *</label>
+                                <asp:FileUpload ID="imagen" accept=".jpg" runat="server" CssClass="form-control"/>
+                                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                            </div>
+
+                            <hr class="mb-1">
+
+                            <asp:Button runat="server" ID="btnIngresar" class="ml-auto btn hvr-hover" type="submit" Text="Ingresar" OnClick="btnIngresar_Click1"></asp:Button>
+					        <div class="ml-auto btn hvr-hover">
+						        <a href="   Upload-Products.aspx" class="txt3">
+							        Cargar Archivo
+						        </a>
+					        </div>                               
+
+                        </form>
                     </div>
                 </div>
             </div>
