@@ -57,8 +57,11 @@ namespace proyecto.Modelo
                 oracleCommand.CommandText = "select(pk_per_id) from vnt_persona where per_usuario = '" + comprador.Usuario + "'";
                 oracleCommand.CommandType = CommandType.Text;
                 OracleDataReader odr = oracleCommand.ExecuteReader();
-                odr.Read();
-                int myid = (int)odr.GetDecimal(0);
+                int myid = 0;
+                while (odr.Read())
+                {
+                    myid = (int)odr.GetDecimal(0);
+                }
 
 
                 oracleCommand = conn.CreateCommand();
