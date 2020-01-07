@@ -13,6 +13,37 @@ namespace proyecto.Vista
         String usuarioP;
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (Session["usP"].ToString() != null)
+                {
+                    Response.Redirect("~/Vista/indexP.aspx");
+                }
+            }
+            catch (Exception ep)
+            {
+            }
+
+            try
+            {
+                if (Session["usA"].ToString() != null)
+                {
+                    Response.Redirect("~/Vista/indexA.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            try
+            {
+                if (Session["us"].ToString() != null)
+                {
+                    Response.Redirect("~/Vista/index.aspx");
+                }
+            }
+            catch (Exception exp)
+            {
+            }
 
         }
 
@@ -23,15 +54,14 @@ namespace proyecto.Vista
             //String contrasenia = contraseniaL.Value;
             Servicio servicio = new Servicio();
             String contrasenia = servicio.Encriptar(contraseniaL.Value);
-            string script="";
-
+            string script = "";
             //servicio.iniciarSesion(usuario, contrasenia);
             // 1=ADMIN 2=COMPRADOR
             if (servicio.iniciarSesion(usuario, contrasenia).Equals("Persona"))
             {
-                if(servicio.abrirIndex(usuario, contrasenia)==1)
+                if (servicio.abrirIndex(usuario, contrasenia) == 1)
                 {
-                    Session["usA"]= usuario;
+                    Session["usA"] = usuario;
                     Response.Redirect("~/Vista/indexA.aspx");
                     usuarioP = usuario;
                     /*
@@ -65,7 +95,8 @@ namespace proyecto.Vista
                 script = @"<script type='text/javascript'>                
                 alert('REVISE SUS DATOS');
                 </script>";
-            }Session["us"]= usuario;
+            }
+            //Session["us"]= usuario;
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
 
         }
