@@ -13,7 +13,37 @@ namespace proyecto.Vista
         String usuarioP;
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (Session["usP"].ToString() != null)
+                {
+                    Response.Redirect("~/Vista/indexP.aspx");
+                }
+            }
+            catch (Exception ep)
+            {
+            }
 
+            try
+            {
+                if (Session["usA"].ToString() != null)
+                {
+                    Response.Redirect("~/Vista/indexA.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            try
+            {
+                if (Session["us"].ToString() != null)
+                {
+                    Response.Redirect("~/Vista/index.aspx");
+                }
+            }
+            catch (Exception exp)
+            {
+            }
         }
 
 
@@ -65,7 +95,7 @@ namespace proyecto.Vista
                 script = @"<script type='text/javascript'>                
                 alert('REVISE SUS DATOS');
                 </script>";
-            }Session["us"]= usuario;
+            }
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
 
         }
