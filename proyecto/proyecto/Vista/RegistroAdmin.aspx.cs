@@ -18,14 +18,17 @@ namespace proyecto.Vista
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Persona persona = new Persona(0, nombre.Value, apellido.Value, cedula.Value, usuario.Value, contrasenia.Value, ciudad.Value, 1, email.Value, direccion.Value, telefono.Value);
             Servicio servicio = new Servicio();
+            String contraE = servicio.Encriptar(contrasenia.Value);
+            Persona persona = new Persona(0, nombre.Value, apellido.Value, cedula.Value, usuario.Value, contraE, ciudad.Value, 1, email.Value, direccion.Value, telefono.Value);
+            
             string script;
             if (servicio.insertAdministrador(persona))
             {
                 script = @"<script type='text/javascript'>                
                 alert('Registro Correcto');
                 </script>";
+                Response.Redirect("~/Vista/Login.aspx");
 
             }
             else

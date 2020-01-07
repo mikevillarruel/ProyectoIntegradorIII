@@ -11,7 +11,20 @@ namespace proyecto.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                String nombre = Session["usA"].ToString();
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("~/Vista/Login.aspx?men=1");
+                
+            }
+        }
+        protected void btnCerrar_Click1(object sender, EventArgs e)
+        {
+            Session.Remove("usA");
+            Response.Redirect("~/Vista/Login.aspx");
         }
     }
 }

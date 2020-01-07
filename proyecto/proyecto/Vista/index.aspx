@@ -71,37 +71,36 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="login-box">
-						<select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-							<option>Register Here</option>
-							<option>Sign In</option>
-						</select>
+                        <form class="login100-form validate-form" runat="server">
+                            <asp:Button runat="server" ID="btnCerrar" class="btn hvr-hover" type="submit" Text="Cerrar Sesion" OnClick="btnCerrar_Click1"></asp:Button>
+                        </form>
 					</div>
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
                                 <li>
-                                    <i class="fab fa-opencart"></i> Beauty & Personal Care
+                                    <i class="fab fa-opencart"></i> Productos de cuidado personal
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Computers
+                                    <i class="fab fa-opencart"></i> Computadoras
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Electronics
+                                    <i class="fab fa-opencart"></i> Equipos electronicos
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Women's Fasion
+                                    <i class="fab fa-opencart"></i> Ropa femenina
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Men's Fashion
+                                    <i class="fab fa-opencart"></i> Ropa masculina
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Home & Kitchen
+                                    <i class="fab fa-opencart"></i> Utensillos de cocina
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Movies & TV
+                                    <i class="fab fa-opencart"></i> Peliculas & TV
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Toys & Games 
+                                    <i class="fab fa-opencart"></i> Videojuegos
                                 </li>
                             </ul>
                         </div>
@@ -179,34 +178,6 @@
                 </div>
                 <!-- End Atribute Navigation -->
             </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
         </nav>
         <!-- End Navigation -->
     </header>
@@ -232,9 +203,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> SIPROE</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                            <p><a class="btn hvr-hover" href="shop.aspx">Shop Now</a></p>
+                            <h1 class="m-b-20"><strong>Bienvenido a <br> SIPROE</strong></h1>
+                            <p class="m-b-40">La página que mejora tu experiencia de compras en linea</p>
+                            <p><a class="btn hvr-hover" href="shop.aspx">Comprar ahora</a></p>
                         </div>
                     </div>
                 </div>
@@ -244,9 +215,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> SIPROE</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                            <p><a class="btn hvr-hover" href="shop.aspx">Shop Now</a></p>
+                            <h1 class="m-b-20"><strong>Bienvenido a <br> SIPROE</strong></h1>
+                            <p class="m-b-40">La página que mejora tu experiencia de compras en linea</p>
+                            <p><a class="btn hvr-hover" href="shop.aspx">Comprar ahora</a></p>
                         </div>
                     </div>
                 </div>
@@ -256,9 +227,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> SIPROE</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                            <p><a class="btn hvr-hover" href="shop.aspx">Shop Now</a></p>
+                            <h1 class="m-b-20"><strong>Bienvenido a <br> SIPROE</strong></h1>
+                            <p class="m-b-40">La página que mejora tu experiencia de compras en linea</p>
+                            <p><a class="btn hvr-hover" href="shop.aspx">Comprar ahora</a></p>
                         </div>
                     </div>
                 </div>

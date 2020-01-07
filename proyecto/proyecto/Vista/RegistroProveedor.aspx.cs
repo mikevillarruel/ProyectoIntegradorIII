@@ -18,14 +18,18 @@ namespace proyecto.Vista
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Proveedor proveedor = new Proveedor(0, nombre.Value, direccion.Value, ciudad.Value, telefono.Value, email.Value, usuario.Value, contrasenia.Value);
             Servicio servicio = new Servicio();
+            String contraE = servicio.Encriptar(contrasenia.Value);
+            Proveedor proveedor = new Proveedor(0, nombre.Value, direccion.Value, ciudad.Value, telefono.Value, email.Value, usuario.Value, contraE);
+            
             string script;
             if (servicio.insertProveedor(proveedor))
             {
                 script = @"<script type='text/javascript'>                
                 alert('Registro Correcto');
                 </script>";
+
+                Response.Redirect("~/Vista/Login.aspx");
 
             }
             else

@@ -20,8 +20,9 @@ namespace proyecto.Vista
         protected void btnIniciar_Click1(object sender, EventArgs e)
         {
             String usuario = userL.Value;
-            String contrasenia = contraseniaL.Value;
+            //String contrasenia = contraseniaL.Value;
             Servicio servicio = new Servicio();
+            String contrasenia = servicio.Encriptar(contraseniaL.Value);
             string script="";
 
             //servicio.iniciarSesion(usuario, contrasenia);
@@ -30,6 +31,7 @@ namespace proyecto.Vista
             {
                 if(servicio.abrirIndex(usuario, contrasenia)==1)
                 {
+                    Session["usA"]= usuario;
                     Response.Redirect("~/Vista/indexA.aspx");
                     usuarioP = usuario;
                     /*
@@ -39,6 +41,7 @@ namespace proyecto.Vista
                 }
                 else if (servicio.abrirIndex(usuario, contrasenia) == 2)
                 {
+                    Session["us"] = usuario;
                     Response.Redirect("~/Vista/index.aspx");
                     /*
                     script = @"<script type='text/javascript'>                
@@ -49,6 +52,7 @@ namespace proyecto.Vista
             }
             else if (servicio.iniciarSesion(usuario, contrasenia).Equals("Proveedor"))
             {
+                Session["usP"] = usuario;
                 Response.Redirect("~/Vista/indexP.aspx");
                 usuarioP = usuario;
                 /*
@@ -61,7 +65,7 @@ namespace proyecto.Vista
                 script = @"<script type='text/javascript'>                
                 alert('REVISE SUS DATOS');
                 </script>";
-            }
+            }Session["us"]= usuario;
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
 
         }

@@ -68,6 +68,13 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="login-box">
+                        <form class="login100-form validate-form" runat="server">
+                            <asp:Button runat="server" ID="btnCerrar" class="btn hvr-hover" type="submit" Text="Cerrar Sesion" OnClick="btnCerrar_Click1"></asp:Button>
+                        </form>
+					</div>
+                </div>
             </div>
         </div>
     </div>

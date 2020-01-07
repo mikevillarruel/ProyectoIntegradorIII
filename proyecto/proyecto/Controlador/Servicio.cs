@@ -123,5 +123,23 @@ namespace proyecto.Controlador
             op.enviarDatosProducto(lectura, ID_CATEGORIA, ID_PROVEEDOR, NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, PRECIO_PRODUCTO, IMAGEN_PRODUCTO);
         }
 
+
+
+        public string Encriptar(String cadena)
+        {
+            string result = string.Empty;
+            byte[] encryted = System.Text.Encoding.Unicode.GetBytes(cadena);
+            result = Convert.ToBase64String(encryted);
+            return result;
+        }
+
+        public string DesEncriptar(String cadena)
+        {
+            string result = string.Empty;
+            byte[] decryted = Convert.FromBase64String(cadena);
+            //result = System.Text.Encoding.Unicode.GetString(decryted, 0, decryted.ToArray().Length);
+            result = System.Text.Encoding.Unicode.GetString(decryted);
+            return result;
+        }
     }
 }
