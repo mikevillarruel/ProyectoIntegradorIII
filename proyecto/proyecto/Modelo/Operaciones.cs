@@ -265,5 +265,86 @@ namespace proyecto.Modelo
             }
         }
 
+
+        public void cambiarContrasenaPersona(String usuario, String contrasenia)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "UPDATE VNT_PERSONA SET PER_CONTRASENIA='" + contrasenia + "'WHERE PER_USUARIO LIKE '"+usuario+"'";
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+
+        }
+
+
+
+        public void cambiarContrasenaProveedor(String usuario, String contrasenia)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "UPDATE VNT_PROVEEDOR SET PVD_CONTRASENIA='" + contrasenia + "'WHERE PVD_USUARIO LIKE '" + usuario + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+
+        }
+
+
+        public Boolean usuarioPersonaC(String usuario)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+
+                oracleCommand.CommandText = "SELECT * FROM VNT_PERSONA WHERE PER_USUARIO LIKE '" + usuario + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+
+                if (odr.Read())
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
+
+        public Boolean usuarioProveedorC(String usuario)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+
+                oracleCommand.CommandText = "SELECT * FROM VNT_PROVEEDOR WHERE PVD_USUARIO LIKE '" + usuario + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+
+                if (odr.Read())
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
+        }
     }
 }

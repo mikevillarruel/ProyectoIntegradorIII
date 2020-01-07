@@ -9,6 +9,17 @@ namespace proyecto.Controlador
 {
     public class Servicio
     {
+        public void cambiarContrasenaPersona(String usuario, String contrasena)
+        {
+            Operaciones op = new Operaciones();
+            op.cambiarContrasenaPersona(usuario, contrasena);
+        }
+
+        public void cambiarContrasenaProveedor(String usuario, String contrasena)
+        {
+            Operaciones op = new Operaciones();
+            op.cambiarContrasenaProveedor(usuario, contrasena);
+        }
         public Comprador selectComprador(int id)
         {
             Operaciones op = new Operaciones();
@@ -67,6 +78,26 @@ namespace proyecto.Controlador
                 return tipoUsuario = "Persona";
             }
             else if (op.usuarioProveedor(usuario,contrasenia))
+            {
+                //abrir index
+                return tipoUsuario = "Proveedor";
+            }
+            return tipoUsuario;
+        }
+
+        public string iniciarSesionC(String usuario)
+        {
+            Operaciones op = new Operaciones();
+            String tipoUsuario = "";
+
+            if (op.usuarioPersonaC(usuario))
+            {
+                //identificar tipo admin
+                //identificar tipo comprador
+                //abrir index cada uno
+                return tipoUsuario = "Persona";
+            }
+            else if (op.usuarioProveedorC(usuario))
             {
                 //abrir index
                 return tipoUsuario = "Proveedor";

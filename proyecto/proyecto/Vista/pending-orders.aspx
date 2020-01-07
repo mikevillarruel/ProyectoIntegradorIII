@@ -61,7 +61,7 @@
                     -->
                     <div class="our-link">
                         <ul>
-                            <li><a href="my-account.aspx"><i class="fa fa-user s_color"></i> My Account</a></li>
+                            <li><a href="my-account.aspx"><i class="fa fa-user s_color"></i> Mi cuenta</a></li>
                             <!--
                             <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
                             -->
@@ -91,13 +91,13 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 
-                        <li class="nav-item active"><a class="nav-link" href="indexP.aspx">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="indexP.aspx">Inicio</a></li>
                         
-                        <li class="nav-item"><a class="nav-link" href="add-products.aspx">Add Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="add-products.aspx">Añadir Productos</a></li>
                         
-                        <li class="nav-item"><a class="nav-link" href="my-products.aspx">My Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="my-products.aspx">Mis Productos</a></li>
 
-                        <li class="nav-item"><a class="nav-link" href="pending-orders.aspx">Pending Orders</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="pending-orders.aspx">Ordenes Pendientes</a></li>
 
                         <!--
                         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>

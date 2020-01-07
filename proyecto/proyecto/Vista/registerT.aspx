@@ -4,7 +4,7 @@
 
 <html lang="en">
 <head>
-	<title>Login V17</title>
+	<title>Registro - SIPROE</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -31,31 +31,39 @@
 <!--===============================================================================================-->
 </head>
 <body>
+
+
 	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" runat="server">
+
+					<span class="login100-form-title p-b-34">
+						Registro
+					</span>
 					
-					<div class="w-full text-center">
-						<a href="   RegistroAdmin.aspx" class="txt3">
-							Administrador
-						</a>
-					</div>
 
-					<div class="w-full text-center">
-						<a href="   RegistroComprador.aspx" class="txt3">
-							Comprador
-						</a>
-					</div>
+					<div class="w-full text-center p-t-27 p-b-239">
+					    <div class="w-full text-center">
+						    <a href="   RegistroAdmin.aspx" class="login100-form-btn">
+							    Administrador
+						    </a>
+					    </div>
 
-					<div class="w-full text-center">
-						<a href="   RegistroProveedor.aspx" class="txt3">
-							Proveedor
-						</a>
-					</div>
+					    <div class="w-full text-center">
+						    <a href="   RegistroComprador.aspx" class="login100-form-btn">
+							    Comprador
+						    </a>
+					    </div>
 
+					    <div class="w-full text-center">
+						    <a href="   RegistroProveedor.aspx" class="login100-form-btn">
+							    Proveedor
+						    </a>
+					    </div>
 
+					</div>                                                      
 				</form>
 
 				<div class="login100-more" style="background-image: url('imagesl/bg-01.jpg');"></div>

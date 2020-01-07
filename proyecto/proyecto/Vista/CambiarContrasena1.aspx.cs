@@ -8,14 +8,14 @@ using proyecto.Controlador;
 
 namespace proyecto.Vista
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class WebForm3 : System.Web.UI.Page
     {
         String usuarioP;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
 
         protected void btnIniciar_Click1(object sender, EventArgs e)
         {
@@ -23,49 +23,38 @@ namespace proyecto.Vista
             //String contrasenia = contraseniaL.Value;
             Servicio servicio = new Servicio();
             String contrasenia = servicio.Encriptar(contraseniaL.Value);
-            string script="";
+            string script = "";
 
             //servicio.iniciarSesion(usuario, contrasenia);
             // 1=ADMIN 2=COMPRADOR
             if (servicio.iniciarSesion(usuario, contrasenia).Equals("Persona"))
             {
-                if(servicio.abrirIndex(usuario, contrasenia)==1)
+                
+                
+                if (servicio.abrirIndex(usuario, contrasenia) == 1)
                 {
-                    Session["usA"]= usuario;
-                    Response.Redirect("~/Vista/indexA.aspx");
-                    usuarioP = usuario;
-                    /*
-                    script = @"<script type='text/javascript'>                
-                    alert('ES PERSONA ADMIN');
-                    </script>";*/
+                    Session["us"] = usuario;
                 }
                 else if (servicio.abrirIndex(usuario, contrasenia) == 2)
                 {
                     Session["us"] = usuario;
-                    Response.Redirect("~/Vista/index.aspx");
-                    /*
-                    script = @"<script type='text/javascript'>                
-                    alert('ES PERSONA COMPRADOR');
-                    </script>";*/
                 }
-
+                Response.Redirect("~/Vista/CambiarContrasena2.aspx");
+                
             }
             else if (servicio.iniciarSesion(usuario, contrasenia).Equals("Proveedor"))
             {
-                Session["usP"] = usuario;
-                Response.Redirect("~/Vista/indexP.aspx");
-                usuarioP = usuario;
-                /*
-                script = @"<script type='text/javascript'>                
-                alert('ES PROVEEDOR');
-                </script>";*/
+                
+                Session["us"] = usuario;
+                Response.Redirect("~/Vista/CambiarContrasena2.aspx");
             }
             else
             {
                 script = @"<script type='text/javascript'>                
                 alert('REVISE SUS DATOS');
                 </script>";
-            }Session["us"]= usuario;
+            }
+
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", script, false);
 
         }

@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="proyecto.Vista.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CambiarContrasena1.aspx.cs" Inherits="proyecto.Vista.WebForm3" %>
 
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
-	<title>Iniciar Sesión - SIPROE</title>
+	<title>Cambiar contraseña - SIPROE</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -37,8 +37,14 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" runat="server">
 					<span class="login100-form-title p-b-34">
-						Inicio de sesión
+						Cambiar contraseña
 					</span>
+
+						<span class="txt3">
+							A continuación, ingrese su usuario y contraseña antigua para verificar sus datos.
+                            </br>
+                            </br>
+						</span>
             
                 <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
                     <input runat="server" type="text" class="input100" id="userL" required />
@@ -50,7 +56,7 @@
 					
 					
 					<div class="container-login100-form-btn">
-                        <asp:Button runat="server" ID="btnIniciar" class="login100-form-btn" type="submit" Text="Iniciar Sesion" OnClick="btnIniciar_Click1"></asp:Button>
+                        <asp:Button runat="server" ID="btnIniciar" class="login100-form-btn" type="submit" Text="Aceptar" OnClick="btnIniciar_Click1"></asp:Button>
 					</div>
 
 					<div class="w-full text-center p-t-27 p-b-239">
@@ -59,18 +65,10 @@
 							Cambiar contraseña
 						</span>
                         -->
-						<a href="CambiarContrasena1.aspx" class="txt3">
-							Cambiar contraseña
+						<a href="Login.aspx" class="txt3">
+							Regresar
 						</a>
 
-                        </br>
-                        </br>
-
-                        <div class="w-full text-center">
-						    <a href="registerT.aspx" class="txt3">
-							    Registrarme
-						    </a>
-					    </div>
 
 					</div>
 

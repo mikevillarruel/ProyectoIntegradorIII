@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="proyecto.Vista.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CambiarContrasena2.aspx.cs" Inherits="proyecto.Vista.WebForm4" %>
 
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
-	<title>Iniciar Sesión - SIPROE</title>
+	<title>Cambiar contraseña - SIPROE</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -37,20 +37,26 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" runat="server">
 					<span class="login100-form-title p-b-34">
-						Inicio de sesión
+						Cambiar contraseña
 					</span>
+
+						<span class="txt3">
+							A continuación, ingrese dos veces su nueva contraseña.
+                            </br>
+                            </br>
+						</span>
             
                 <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-                    <input runat="server" type="text" class="input100" id="userL" required />
+                    <input runat="server" type="password" class="input100" id="contra1" required />
                 </div>
 
                 <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-                    <input runat="server" type="password" class="input100" id="contraseniaL" required />
+                    <input runat="server" type="password" class="input100" id="contra2" required />
                 </div>
 					
 					
 					<div class="container-login100-form-btn">
-                        <asp:Button runat="server" ID="btnIniciar" class="login100-form-btn" type="submit" Text="Iniciar Sesion" OnClick="btnIniciar_Click1"></asp:Button>
+                        <asp:Button runat="server" ID="btnIniciar" class="login100-form-btn" type="submit" Text="Aceptar" OnClick="btnIniciar_Click1"></asp:Button>
 					</div>
 
 					<div class="w-full text-center p-t-27 p-b-239">
@@ -60,18 +66,10 @@
 						</span>
                         -->
 						<a href="CambiarContrasena1.aspx" class="txt3">
-							Cambiar contraseña
+							Regresar
 						</a>
 
-                        </br>
-                        </br>
-
-                        <div class="w-full text-center">
-						    <a href="registerT.aspx" class="txt3">
-							    Registrarme
-						    </a>
-					    </div>
-
+                        <asp:Label ID="funcional" runat="server" Text="Label"></asp:Label>
 					</div>
 
 

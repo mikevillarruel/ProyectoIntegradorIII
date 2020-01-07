@@ -241,6 +241,8 @@
     <Content Include="Vista\index.aspx" />
     <Content Include="Vista\my-account.aspx" />
     <Content Include="Vista\RegistroComprador.aspx" />
+    <Content Include="Vista\CambiarContrasena1.aspx" />
+    <Content Include="Vista\CambiarContrasena2.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -391,6 +393,20 @@
     </Compile>
     <Compile Include="Vista\Upload-Products.aspx.designer.cs">
       <DependentUpon>Upload-Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\CambiarContrasena1.aspx.cs">
+      <DependentUpon>CambiarContrasena1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\CambiarContrasena1.aspx.designer.cs">
+      <DependentUpon>CambiarContrasena1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\CambiarContrasena2.aspx.cs">
+      <DependentUpon>CambiarContrasena2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\CambiarContrasena2.aspx.designer.cs">
+      <DependentUpon>CambiarContrasena2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
