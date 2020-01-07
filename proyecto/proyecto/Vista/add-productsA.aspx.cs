@@ -13,7 +13,7 @@ namespace proyecto.Vista
         {
             try
             {
-                String nombre = Session["us"].ToString();
+                String nombre = Session["usA"].ToString();
             }
             catch (Exception ex)
             {
