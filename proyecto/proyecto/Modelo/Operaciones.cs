@@ -346,5 +346,98 @@ namespace proyecto.Modelo
             }
             return false;
         }
+
+
+        public List<Producto> selectMisProductos(String usuario)
+        {
+            List<Producto> listaProductos = new List<Producto>();
+
+
+           try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT P.PRO_NOMBRE, P.PRO_DESCRIPCION, P.PRO_PRECIO, C.CAT_NOMBRE FROM VNT_PRODUCTO P, VNT_CATEGORIA C, VNT_PROVEEDOR V WHERE P.FK_CAT_ID LIKE C.PK_CAT_ID AND V.PK_PVD_ID LIKE P.FK_PVD_ID AND V.PVD_USUARIO LIKE '"+ usuario+"'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    Producto unProducto = new Producto();
+                    unProducto.Nombre = odr.GetString(0);
+                    unProducto.Descripcion = odr.GetString(1);
+                    unProducto.Precio = odr.GetDecimal(2);
+                    unProducto.Categoria = odr.GetString(3);
+                    listaProductos.Add(unProducto);
+                    i = i + 1;
+
+                }
+           }
+            catch
+            {
+                return listaProductos;
+            }
+            return listaProductos;
+        }
+
+
+        public Producto selectUnProducto(String usuario, String nombrePro)
+        {
+            Producto unProducto = new Producto();
+            try
+             {
+            OracleConnection conn = Conexion.getInstancia().getConexion();
+            OracleCommand oracleCommand = conn.CreateCommand();
+            oracleCommand.CommandText = "SELECT P.PRO_NOMBRE, P.PRO_DESCRIPCION, P.PRO_PRECIO, C.CAT_NOMBRE FROM VNT_PRODUCTO P, VNT_CATEGORIA C, VNT_PROVEEDOR V WHERE P.FK_CAT_ID LIKE C.PK_CAT_ID AND V.PK_PVD_ID LIKE P.FK_PVD_ID AND V.PVD_USUARIO LIKE '" + usuario + "' AND P.PRO_NOMBRE LIKE '"+nombrePro+"'";
+            oracleCommand.CommandType = CommandType.Text;
+            OracleDataReader odr = oracleCommand.ExecuteReader();
+            int i = 0;
+            while (odr.Read())
+            {
+                unProducto.Nombre = odr.GetString(0);
+                unProducto.Descripcion = odr.GetString(1);
+                unProducto.Precio = odr.GetDecimal(2);
+                unProducto.Categoria = odr.GetString(3);
+            }
+            }
+             catch
+             {
+                 return unProducto;
+             }
+            return unProducto;
+        }
+
+
+
+        public void updateUnProducto(String usuario, String nombrePro, Producto producto)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "UPDATE VNT_PRODUCTO SET PRO_NOMBRE='" + producto.Nombre + "', PRO_DESCRIPCION = '"+producto.Descripcion+"', PRO_PRECIO="+producto.Precio+" WHERE PRO_NOMBRE LIKE '"+nombrePro+"'";
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public void deleteUnProducto(String usuario, String nombrePro) {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "DELETE FROM VNT_PRODUCTO WHERE PRO_NOMBRE LIKE '"+nombrePro+"' AND FK_PVD_ID LIKE (SELECT P.PK_PVD_ID FROM VNT_PROVEEDOR P WHERE P.PVD_USUARIO LIKE '"+usuario+"')";
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
     }
 }

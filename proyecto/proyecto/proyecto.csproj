@@ -195,6 +195,7 @@
     <Content Include="Vista\js\owl.carousel.min.js" />
     <Content Include="Vista\js\popper.min.js" />
     <Content Include="Vista\Login.aspx" />
+    <Content Include="Vista\Modificar-Productos.aspx" />
     <Content Include="Vista\my-products.aspx" />
     <Content Include="Vista\orders.aspx" />
     <Content Include="Vista\pending-orders.aspx" />
@@ -316,6 +317,13 @@
     </Compile>
     <Compile Include="Vista\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Modificar-Productos.aspx.cs">
+      <DependentUpon>Modificar-Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Modificar-Productos.aspx.designer.cs">
+      <DependentUpon>Modificar-Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\my-account.aspx.cs">
       <DependentUpon>my-account.aspx</DependentUpon>

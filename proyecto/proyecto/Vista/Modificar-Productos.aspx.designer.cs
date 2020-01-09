@@ -11,8 +11,35 @@ namespace proyecto.Vista
 {
 
 
-    public partial class my_products
+    public partial class Modificar_Productos
     {
+
+        /// <summary>
+        /// nombreP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText nombreP;
+
+        /// <summary>
+        /// descripcionP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText descripcionP;
+
+        /// <summary>
+        /// precioP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText precioP;
 
         /// <summary>
         /// m1 control.
@@ -24,39 +51,39 @@ namespace proyecto.Vista
         protected global::System.Web.UI.WebControls.Label m1;
 
         /// <summary>
-        /// form1 control.
+        /// categorias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.DropDownList categorias;
 
         /// <summary>
-        /// busqueda control.
+        /// imagenP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText busqueda;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText imagenP;
 
         /// <summary>
-        /// buscar control.
+        /// imagen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button buscar;
+        protected global::System.Web.UI.WebControls.FileUpload imagen;
 
         /// <summary>
-        /// gvProductos control.
+        /// btnIngresar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProductos;
+        protected global::System.Web.UI.WebControls.Button btnIngresar;
     }
 }

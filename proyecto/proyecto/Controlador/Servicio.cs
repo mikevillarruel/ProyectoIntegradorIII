@@ -172,5 +172,37 @@ namespace proyecto.Controlador
             result = System.Text.Encoding.Unicode.GetString(decryted);
             return result;
         }
+
+
+        public List<Producto> selectMisProductos(String usuario)
+        {
+            Operaciones op = new Operaciones();
+            List<Producto> listaProductos = new List<Producto>();
+            listaProductos = op.selectMisProductos(usuario);
+
+            return listaProductos;
+        }
+
+        public Producto selectProducto(String usuario, String nombrePro)
+        {
+            Operaciones op = new Operaciones();
+            Producto producto = new Producto();
+
+            producto = op.selectUnProducto(usuario, nombrePro);
+
+            return producto;
+        }
+
+        public void updateUnProducto(String usuario, String nombrePro, Producto producto)
+        {
+            Operaciones op = new Operaciones();
+            op.updateUnProducto(usuario, nombrePro, producto);
+        }
+
+        public void deleteUnProducto(String usuario, String nombrePro)
+        {
+            Operaciones op = new Operaciones();
+            op.deleteUnProducto(usuario, nombrePro);
+        }
     }
 }
