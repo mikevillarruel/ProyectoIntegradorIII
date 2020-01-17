@@ -439,5 +439,130 @@ namespace proyecto.Modelo
 
             }
         }
+
+
+        public List<Producto> selectTodosProductos()
+        {
+            List<Producto> listaProductos = new List<Producto>();
+
+
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT P.PRO_NOMBRE, P.PRO_DESCRIPCION, P.PRO_PRECIO, C.CAT_NOMBRE FROM VNT_PRODUCTO P, VNT_CATEGORIA C, VNT_PROVEEDOR V WHERE P.FK_CAT_ID LIKE C.PK_CAT_ID AND V.PK_PVD_ID LIKE P.FK_PVD_ID";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    Producto unProducto = new Producto();
+                    unProducto.Nombre = odr.GetString(0);
+                    unProducto.Descripcion = odr.GetString(1);
+                    unProducto.Precio = odr.GetDecimal(2);
+                    unProducto.Categoria = odr.GetString(3);
+                    listaProductos.Add(unProducto);
+                    i = i + 1;
+
+                }
+            }
+            catch
+            {
+                return listaProductos;
+            }
+            return listaProductos;
+        }
+
+        public List<Producto> selectVerProducto(String nombrePro)
+        {
+            List<Producto> listaProductos = new List<Producto>();
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT P.PRO_NOMBRE, P.PRO_DESCRIPCION, P.PRO_PRECIO, C.CAT_NOMBRE FROM VNT_PRODUCTO P, VNT_CATEGORIA C, VNT_PROVEEDOR V WHERE P.FK_CAT_ID LIKE C.PK_CAT_ID AND V.PK_PVD_ID LIKE P.FK_PVD_ID AND P.PRO_NOMBRE LIKE '" + nombrePro + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    Producto unProducto = new Producto();
+                    unProducto.Nombre = odr.GetString(0);
+                    unProducto.Descripcion = odr.GetString(1);
+                    unProducto.Precio = odr.GetDecimal(2);
+                    unProducto.Categoria = odr.GetString(3);
+                    listaProductos.Add(unProducto);
+                    i = i + 1;
+                }
+            }
+            catch
+            {
+                return listaProductos;
+            }
+            return listaProductos; 
+        }
+
+        public Producto selectCartProducto(String nombrePro)
+        {
+            Producto unProducto = new Producto();
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT P.PRO_NOMBRE, P.PRO_DESCRIPCION, P.PRO_PRECIO, C.CAT_NOMBRE FROM VNT_PRODUCTO P, VNT_CATEGORIA C, VNT_PROVEEDOR V WHERE P.FK_CAT_ID LIKE C.PK_CAT_ID AND V.PK_PVD_ID LIKE P.FK_PVD_ID AND P.PRO_NOMBRE LIKE '" + nombrePro + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    
+                    unProducto.Nombre = odr.GetString(0);
+                    unProducto.Descripcion = odr.GetString(1);
+                    unProducto.Precio = odr.GetDecimal(2);
+                    unProducto.Categoria = odr.GetString(3);
+                    unProducto.Cantidad = 1;
+                    unProducto.Total= odr.GetDecimal(2);
+                    i = i + 1;
+                }
+            }
+            catch
+            {
+                return unProducto;
+            }
+            return unProducto;
+        }
+
+
+        public List<estadistica> selectMisReporte()
+        {
+            List<estadistica> listaReporte = new List<estadistica>();
+
+
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT ANIO, PRODUCTO, CANTIDAD, PROVEEDOR FROM ESTADISTICA  ORDER BY CANTIDAD DESC";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    estadistica unProducto = new estadistica();
+                    unProducto.Anio = odr.GetString(0);
+                    unProducto.Producto = odr.GetString(1);
+                    unProducto.Cantidad = odr.GetDecimal(2).ToString();
+                    unProducto.Proveedor = odr.GetString(3);
+                    listaReporte.Add(unProducto);
+                    i = i + 1;
+
+                }
+            }
+            catch
+            {
+                return listaReporte;
+            }
+            return listaReporte;
+        }
     }
 }

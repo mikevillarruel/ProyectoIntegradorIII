@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace proyectoweb
+namespace proyecto.Vista
 {
 
 
-    public partial class WebForm1
+    public partial class VerProducto
     {
 
         /// <summary>
@@ -24,39 +24,30 @@ namespace proyectoweb
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// tablaDetalle control.
+        /// busqueda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView tablaDetalle;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText busqueda;
 
         /// <summary>
-        /// btnVerificar control.
+        /// buscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerificar;
+        protected global::System.Web.UI.WebControls.Button buscar;
 
         /// <summary>
-        /// btnEnviar control.
+        /// gvProductos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnviar;
-
-        /// <summary>
-        /// alerta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label alerta;
+        protected global::System.Web.UI.WebControls.GridView gvProductos;
     }
 }

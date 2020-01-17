@@ -9,6 +9,8 @@ namespace proyecto.Controlador
 {
     public class Servicio
     {
+        List<Producto> listaCart = new List<Producto>();
+
         public void cambiarContrasenaPersona(String usuario, String contrasena)
         {
             Operaciones op = new Operaciones();
@@ -203,6 +205,59 @@ namespace proyecto.Controlador
         {
             Operaciones op = new Operaciones();
             op.deleteUnProducto(usuario, nombrePro);
+        }
+    
+        public List<Producto> selectTodosProductos()
+        {
+            Operaciones op = new Operaciones();
+            List<Producto> listaProductos = new List<Producto>();
+            listaProductos = op.selectTodosProductos();
+
+            return listaProductos;
+
+        }
+
+        public List<Producto> selectVerProducto(String nombrePro)
+        {
+            Operaciones op = new Operaciones();
+            List<Producto> listaProductos = new List<Producto>();
+            listaProductos = op.selectVerProducto(nombrePro);
+
+            return listaProductos;
+
+        }
+        /*
+        public List<Producto> selectCartProducto(String nombrePro)
+        {
+            Operaciones op = new Operaciones();
+            Producto unProducto = new Producto();
+
+            unProducto = op.selectCartProducto(nombrePro);
+            listaCart.Add(unProducto);
+
+            return listaCart;
+        }*/
+
+        public Producto selectCartProducto(String nombrePro)
+        {
+            Operaciones op = new Operaciones();
+            Producto unProducto = new Producto();
+
+            unProducto = op.selectCartProducto(nombrePro);
+
+            return unProducto;
+        }
+
+
+
+
+        public List<estadistica> selectMisReporte()
+        {
+            Operaciones op = new Operaciones();
+            List<estadistica> listaReporte = new List<estadistica>();
+            listaReporte = op.selectMisReporte();
+
+            return listaReporte;
         }
     }
 }

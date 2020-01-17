@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="proyecto.Vista.cart" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VerProducto.aspx.cs" Inherits="proyecto.Vista.VerProducto" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>My Cart - Siproe</title>
+    <title>Shop - Siproe</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -113,7 +113,7 @@
     <!-- End Main Top -->
 
     <!-- Start Main Top -->
-        <header class="main-header">
+    <header class="main-header">
         <!-- Start Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
             <div class="container">
@@ -229,10 +229,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Cart</h2>
+                    <h2>Shop</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active">Cart</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Shop</li>
                     </ul>
                 </div>
             </div>
@@ -240,11 +240,40 @@
     </div>
     <!-- End All Title Box -->
 
-    <!-- Start Cart  -->
-    <div class="cart-box-main">
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+                                <div class="toolbar-sorter-right">
+                                    <span>Sort by </span>
+                                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+									<option data-display="Select">Nothing</option>
+									<option value="1">Popularity</option>
+									<option value="2">High Price → High Price</option>
+									<option value="3">Low Price → High Price</option>
+									<option value="4">Best Selling</option>
+								</select>
+                                </div>
+                                <p>Showing all 4 results</p>
+                            </div>
+                            <div class="col-12 col-sm-4 text-center text-sm-right">
+                                <ul class="nav nav-tabs ml-auto">
+                                    <li>
+                                        <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="product-categorie-box">
+                            
                             <form id="form1" runat="server">
                                         <div class="search-product">
                                                 <input runat="server" type="text" class="form-control" id="busqueda" placeholder="Search here..."/>
@@ -259,9 +288,8 @@
 
                                                     <asp:BoundField DataField="Imagen" HeaderText="Imagen" />
                                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                                    <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                                                     <asp:BoundField DataField="Precio" HeaderText="Precio" />
-                                                    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-                                                    <asp:BoundField DataField="Total" HeaderText="Total" />
                                                 </Columns>
 
                                             </asp:GridView>
@@ -270,66 +298,71 @@
                                 </div>
                                 
                             </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
+				<div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
 
-            <div class="row my-5">
-                <div class="col-lg-6 col-sm-6">
-                    <div class="coupon-box">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                            <div class="input-group-append">
-                                <button class="btn btn-theme" type="button">Apply Coupon</button>
+
+                        <!--
+                        <div class="filter-sidebar-left">
+                            <div class="title-left">
+                                <h3>Categories</h3>
+                            </div>
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits & Drinks <small class="text-muted">(100)</small>
+								</a>
+                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action active">Fruits 1 <small class="text-muted">(50)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Fruits 2 <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Fruits 3 <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Fruits 4 <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Fruits 5 <small class="text-muted">(20)</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables 
+								<small class="text-muted">(50)</small>
+								</a>
+                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small class="text-muted">(10)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small class="text-muted">(20)</small></a>
+                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small class="text-muted">(20)</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="list-group-item list-group-item-action"> Grocery  <small class="text-muted">(150) </small></a>
+                                <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(11)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(22)</small></a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <div class="update-box">
-                        <input value="Update Cart" type="submit">
+                        -->
+
+                        <!--
+                        <div class="filter-price-left">
+                            <div class="title-left">
+                                <h3>Price</h3>
+                            </div>
+                            <div class="price-box-slider">
+                                <div id="slider-range"></div>
+                                <p>
+                                    <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
+                                    <button class="btn hvr-hover" type="submit">Filter</button>
+                                </p>
+                            </div>
+                        </div>
+                        -->
                     </div>
                 </div>
             </div>
-
-            <div class="row my-5">
-                <div class="col-lg-8 col-sm-12"></div>
-                <div class="col-lg-4 col-sm-12">
-                    <div class="order-box">
-                        <h3>Order summary</h3>
-                        <div class="d-flex">
-                            <h4>Sub Total</h4>
-                            <div class="ml-auto font-weight-bold"> $ 130 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $ 40 </div>
-                        </div>
-                        <hr class="my-1">
-                        <div class="d-flex">
-                            <h4>Coupon Discount</h4>
-                            <div class="ml-auto font-weight-bold"> $ 10 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Tax</h4>
-                            <div class="ml-auto font-weight-bold"> $ 2 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Shipping Cost</h4>
-                            <div class="ml-auto font-weight-bold"> Free </div>
-                        </div>
-                        <hr>
-                        <div class="d-flex gr-total">
-                            <h5>Grand Total</h5>
-                            <div class="ml-auto h5"> $ 388 </div>
-                        </div>
-                        <hr> </div>
-                </div>
-                <div class="col-12 d-flex shopping-box"><a href="checkout.aspx" class="ml-auto btn hvr-hover">Checkout</a> </div>
-            </div>
-
         </div>
     </div>
-    <!-- End Cart -->
+    <!-- End Shop Page -->
 
     <!-- Start Instagram Feed  -->
     <div class="instagram-box">
@@ -435,7 +468,13 @@
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
 							<h3>Newsletter</h3>
-
+							<form class="newsletter-box">
+								<div class="form-group">
+									<input class="" type="email" name="Email" placeholder="Email Address*" />
+									<i class="fa fa-envelope"></i>
+								</div>
+								<button class="btn hvr-hover" type="submit">Submit</button>
+							</form>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
@@ -520,6 +559,8 @@
     <script src="js/isotope.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/baguetteBox.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>

@@ -19,8 +19,8 @@ namespace proyecto.Vista
             try
             {
                 nombre = Session["usP"].ToString();
-                nombrePro = Request.QueryString["np"];
-                
+                nombrePro = Session["nomProducto"].ToString();
+
             }
             catch (Exception ex)
             {

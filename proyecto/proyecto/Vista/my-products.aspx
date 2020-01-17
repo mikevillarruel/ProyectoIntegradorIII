@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="my-products.aspx.cs" Inherits="proyecto.Vista.my_products" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="my-products.aspx.cs" Inherits="proyecto.Vista.my_products" EnableEventValidation="false"%>
 
 <!DOCTYPE html>
 
@@ -157,6 +157,7 @@
                         <div class="table-main table-responsive">
                             <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="false" class="table">
                                 <Columns>
+
                                     <asp:BoundField DataField="Imagen" HeaderText="Imagen" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                                     <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
@@ -175,119 +176,10 @@
                                 </Columns>
 
                             </asp:GridView>
-
-                            <!--
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Categoria</th>
-                                        <th>Precio</th>
-                                        <th>Modificar</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="thumbnail-img">
-                                            <a href="#">
-									    <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-								    </a>
-                                        </td>
-                                        <td class="name-pr">
-                                            <a href="#">
-									    Computador Lenovo
-								    </a>
-                                        </td>
-                                        <td class="name-pr">
-                                            <p>Computadora de 16 GB</p>
-                                        </td>
-                                        <td class="name-pr">
-                                            <p>Tecnologia</p>
-                                        </td>
-                                        <td class="price-pr">
-                                            <p>$ 800.0</p>
-                                        </td>
-                                        <td class="add-pr">
-                                            <a class="btn hvr-hover" href="#">Modificar</a>
-                                        </td>
-                                        <td class="remove-pr">
-                                            <a href="#">
-									    <i class="fas fa-times"></i>
-								    </a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="thumbnail-img">
-                                            <a href="#">
-									    <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-								    </a>
-                                        </td>
-                                        <td class="name-pr">
-                                            <a href="#">
-									    Computador HP
-								    </a>
-                                        </td>
-                                        <td class="name-pr">
-                                            <p>Computadora de 4GB</p>
-                                        </td>
-                                        <td class="name-pr">
-                                            <p>Tecnologia</p>
-                                        </td>
-                                        <td class="price-pr">
-                                            <p>$ 500.0</p>
-                                        </td>
-                                        <td class="add-pr">
-                                            <a class="btn hvr-hover" href="#">Modificar</a>
-                                        </td>
-                                        <td class="remove-pr">
-                                            <a href="#">
-									    <i class="fas fa-times"></i>
-								    </a>
-                                        </td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td class="thumbnail-img">
-                                            <a href="#">
-									    <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-								    </a>
-                                        </td>
-                                        <td class="name-pr">
-                                            <a href="#">
-									    Notebook Samsung
-								    </a>
-                                        </td>
-                                        <td class="name-pr">
-                                            <p>Notebook de 8GB</p>
-                                        </td>
-                                        <td class="name-pr">
-                                            <p>Tecnologia</p>
-                                        </td>
-                                        <td class="price-pr">
-                                            <p>$ 700.0</p>
-                                        </td>
-                                        <td class="add-pr">
-                                            <a class="btn hvr-hover" href="#">Modificar</a>
-                                        </td>
-                                        <td class="remove-pr">
-                                            <a href="#">
-									    <i class="fas fa-times"></i>
-								    </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            -->
                         </div>
                     </div>
                 </div>
-
+                <asp:Button ID="Exportar" runat="server" Text="Exportar" OnClick="Exportar_Click" />
             </form>
 
         </div>

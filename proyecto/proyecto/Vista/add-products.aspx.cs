@@ -26,7 +26,7 @@ namespace proyecto.Vista
 
         protected void btnIngresar_Click1(object sender, EventArgs e)
         {
-            Producto producto = new Producto(nombreP.Value, descripcionP.Value, Convert.ToDecimal(precioP.Value), imagenP.Value, categorias.SelectedValue.ToString());
+            Producto producto = new Producto(nombreP.Value, descripcionP.Value, Convert.ToDecimal(precioP.Value), imagenP.Value, categorias.SelectedValue.ToString(),0,0);
             Servicio servicio = new Servicio();
             int tamanio = imagen.PostedFile.ContentLength;
             byte[] img = new byte[tamanio];

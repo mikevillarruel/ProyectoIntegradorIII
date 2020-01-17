@@ -273,6 +273,43 @@
                         </div>
 
                         <div class="product-categorie-box">
+                            
+                            <form id="form1" runat="server">
+                                        <div class="search-product">
+                                                <input runat="server" type="text" class="form-control" id="busqueda" placeholder="Search here..."/>
+                                                <asp:Button ID="buscar" runat="server" Text="Buscar" class="fa fa-search" />
+                                        </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="table-main table-responsive">
+                                            <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="false" class="table">
+                                                <Columns>
+
+                                                    <asp:BoundField DataField="Imagen" HeaderText="Imagen" />
+                                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                                    <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                                                    <asp:BoundField DataField="Precio" HeaderText="Precio" />
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkVer" runat="server" CommandArgument='<%#Eval("Nombre") %>' OnClick="lnkVer_OnClick"> Ver </asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkComprar" runat="server"  CommandArgument='<%#Eval("Nombre") %>' OnClick="lnkComprar_OnClick"> Comprar </asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </form>
+
+                            <!--
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                     <div class="row">
@@ -575,17 +612,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            -->
                         </div>
                     </div>
                 </div>
 				<div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                     <div class="product-categori">
-                        <div class="search-product">
-                            <form action="#">
-                                <input class="form-control" placeholder="Search here..." type="text">
-                                <button type="submit"> <i class="fa fa-search"></i> </button>
-                            </form>
-                        </div>
+
+
+                        <!--
                         <div class="filter-sidebar-left">
                             <div class="title-left">
                                 <h3>Categories</h3>
@@ -621,6 +657,9 @@
                                 <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(22)</small></a>
                             </div>
                         </div>
+                        -->
+
+                        <!--
                         <div class="filter-price-left">
                             <div class="title-left">
                                 <h3>Price</h3>
@@ -633,6 +672,7 @@
                                 </p>
                             </div>
                         </div>
+                        -->
                     </div>
                 </div>
             </div>

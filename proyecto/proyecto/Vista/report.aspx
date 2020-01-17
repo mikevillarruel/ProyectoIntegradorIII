@@ -138,6 +138,56 @@
     <!-- End All Title Box -->
 
 
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                            <form id="form1" runat="server">
+
+                                <asp:Label ID="lab1" runat="server" Text="Producto mas vendido"></asp:Label>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="table-main table-responsive">
+                                            <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="false" class="table">
+                                                <Columns>
+
+                                                    <asp:BoundField DataField="anio" HeaderText="anio" />
+                                                    <asp:BoundField DataField="producto" HeaderText="producto" />
+                                                    <asp:BoundField DataField="cantidad" HeaderText="cantidad" />
+                                                    <asp:BoundField DataField="proveedor" HeaderText="proveedor" />
+                                                </Columns>
+
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <asp:Button ID="btnPDF" runat="server" OnClick="Button1_Click" Text="Imprimir" />
+                                
+                            </form>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Start copyright  -->
     <div class="footer-copyright">

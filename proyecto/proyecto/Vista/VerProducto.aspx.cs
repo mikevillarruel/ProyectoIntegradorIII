@@ -9,36 +9,32 @@ using proyecto.Modelo;
 
 namespace proyecto.Vista
 {
-    public partial class cart : System.Web.UI.Page
+    public partial class VerProducto : System.Web.UI.Page
     {
         String nombre;
         String nombrePro;
-        Servicio servicio = new Servicio();
-        List<Producto> listaCart = new List<Producto>();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 nombre = Session["us"].ToString();
-                //listaCart = Session["nomProducto"];
+                nombrePro = Session["nomProducto"].ToString();
             }
             catch (Exception ex)
             {
                 Response.Redirect("~/Vista/Login.aspx?men=1");
 
             }
-
             llenarProductos();
         }
 
-
         public void llenarProductos()
         {
-            //listaCart.Add(servicio.selectCartProducto(nombrePro));
-            gvProductos.DataSource = listaCart;
+            Servicio servicio = new Servicio();
+            gvProductos.DataSource = servicio.selectVerProducto(nombrePro);
             gvProductos.DataBind();
+
         }
-
-
     }
 }

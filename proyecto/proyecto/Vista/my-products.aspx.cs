@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using proyecto.Controlador;
 using proyecto.Modelo;
+using System.IO;
 namespace proyecto.Vista
 {
     public partial class my_products : System.Web.UI.Page
@@ -26,6 +27,37 @@ namespace proyecto.Vista
             llenarProductos();
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //required to avoid the run time error "  
+            //Control 'GridView1' of type 'Grid View' must be placed inside a form tag with runat=server."  
+        }
+
+
+        private void ExportGridToExcel()
+        {
+            /*
+            string attachment = "attachment; filename=proyecto.xls";
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", attachment);
+            Response.ContentType = "application/ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gvProductos.RenderControl(htw);
+            Response.Write(sw.ToString());
+            Response.End();*/
+
+            System.IO.StringWriter sw = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htw = new System.Web.UI.HtmlTextWriter(sw);
+
+            // Render grid view control.
+            gvProductos.RenderControl(htw);
+
+            // Write the rendered content to a file.
+            string renderedGridView = sw.ToString();
+
+            System.IO.File.WriteAllText("C:/Users/danie/Desktop/archivos/ExportedFile.xls", renderedGridView);
+        }
 
         public void llenarProductos()
         {
@@ -38,7 +70,8 @@ namespace proyecto.Vista
         public void lnkModificar_OnClick(object sender, EventArgs e)
         {
             //m1.Text = (sender as LinkButton).CommandArgument ;
-            Response.Redirect("~/Vista/Modificar-Productos.aspx?np="+ (sender as LinkButton).CommandArgument);
+            Session["nomProducto"] = (sender as LinkButton).CommandArgument;
+            Response.Redirect("~/Vista/Modificar-Productos.aspx");
 
 
         }
@@ -63,6 +96,11 @@ namespace proyecto.Vista
             gvProductos.DataSource = listaProductos;
             gvProductos.DataBind();
 
+        }
+
+        protected void Exportar_Click(object sender, EventArgs e)
+        {
+            ExportGridToExcel();
         }
     }
 }
