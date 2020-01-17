@@ -139,10 +139,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DiseñoPrincipal.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\81_12_24_2017_10_26_28.jpg" />
+    <Content Include="Imagenes\COCINAS3.jpg" />
+    <Content Include="Imagenes\liverpool.jpg" />
+    <Content Include="Imagenes\searchIcon.png" />
+    <Content Include="Imagenes\telefono.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
