@@ -11,6 +11,19 @@ namespace e_commerce.Controllers
     public class AdministradorController : Controller
     {
         // GET: Administrador
+
+        public List<SelectListItem> obtenerCategorias()
+        {
+            Servicio servicio = new Servicio();
+            List<SelectListItem> lista = new List<SelectListItem>();
+            List<Categoria> cat = new List<Categoria>();
+            cat = servicio.getCategoria();
+            foreach(var item in cat)
+            {
+                lista.Add(new SelectListItem { Value=item.Id.ToString(),Text=item.Nombre });
+            }
+            return lista;
+        }
         public ActionResult DashBoard()
         {
             return View();
@@ -33,6 +46,7 @@ namespace e_commerce.Controllers
         {
             Servicio servicio = new Servicio();
             Producto producto = new Producto();
+            ViewBag.ListCategoria = obtenerCategorias();
             producto = servicio.selectProducto(productoNombre);
             return View(producto);
         }
@@ -45,6 +59,7 @@ namespace e_commerce.Controllers
         }
         public ActionResult agregarProducto(string productoNombre)
         {
+            ViewBag.ListCategoria = obtenerCategorias();
             return View();
         }
         [HttpPost]
