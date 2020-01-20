@@ -1664,6 +1664,7 @@
     <Content Include="Views\Administrador\DashBoard.cshtml" />
     <Content Include="Views\Administrador\Productos.cshtml" />
     <Content Include="Views\Administrador\modificarProducto.cshtml" />
+    <Content Include="Views\Administrador\agregarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

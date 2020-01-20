@@ -39,9 +39,19 @@ namespace e_commerce.Controllers
         [HttpPost]
         public ActionResult modificarProducto(Producto producto)
         {
-            System.Windows.Forms.MessageBox.Show(producto.Nombre + "|" + producto.Precio);
             Servicio servicio = new Servicio();
             servicio.updateUnProducto(producto);
+            return RedirectToAction("Productos");
+        }
+        public ActionResult agregarProducto(string productoNombre)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult agregarProducto(Producto producto)
+        {
+            Servicio servicio = new Servicio();
+            servicio.addProducto(producto);
             return RedirectToAction("Productos");
         }
     }

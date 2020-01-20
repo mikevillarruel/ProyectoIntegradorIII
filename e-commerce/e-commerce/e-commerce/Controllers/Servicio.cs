@@ -39,5 +39,12 @@ namespace e_commerce.Controllers
             Operaciones op = new Operaciones();
             op.updateUnProducto(producto);
         }
+
+        public void addProducto(Producto producto)
+        {
+
+            Operaciones op = new Operaciones();
+            op.insertProducto(producto);
+        }
     }
 }

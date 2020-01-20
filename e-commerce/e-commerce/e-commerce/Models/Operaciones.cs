@@ -109,5 +109,41 @@ namespace e_commerce.Models
                 System.Windows.Forms.MessageBox.Show(producto.Nombre + "|" + producto.Precio+"|"+e);
             }
         }
+        public Boolean insertProducto(Producto producto)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "select categoria_id from tbl_categoria where categoria_nombre LIKE '" + producto.Categoria + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int myid = 0;
+                while (odr.Read())
+                {
+                    myid = (int)odr.GetDecimal(0);
+                }
+                System.Windows.Forms.MessageBox.Show(""+myid);
+                oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "insert into tbl_producto (producto_id,categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,CANTIDAD,PRODUCTO_PRECIO) " +
+                    "VALUES (2,"+ myid + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio+ ")";
+                //OracleParameter blobParameter = new OracleParameter();
+                //blobParameter.OracleDbType = OracleDbType.Blob;
+                //blobParameter.ParameterName = "BlobParameter";
+                //blobParameter.Value = img;
+                //oracleCommand.Parameters.Add(blobParameter);
+
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(""+e);
+
+                return false;
+            }
+        }
     }
 }
