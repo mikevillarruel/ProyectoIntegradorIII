@@ -36,7 +36,7 @@ namespace e_commerce.Models
             return prueba;
         }
 
-        public List<Producto> selectMisProductos(String usuario)
+        public List<Producto> selectAllProductos()
         {
             List<Producto> listaProductos = new List<Producto>();
 
@@ -45,7 +45,7 @@ namespace e_commerce.Models
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "SELECT P.PRODUCTO_NOMBRE, P.PRODUCTO_DESCRIPCION, P.PRODUCTO_PRECIO, C.CATEGORIA_NOMBRE FROM TBL_PRODUCTO P, TBL_CATEGORIA C, TBL_USUARIO V WHERE P.CATEGORIA_ID LIKE C.CATEGORIA_ID AND V.USUARIO_ID LIKE P.USUARIO_ID AND V.USUARIO_ID LIKE '" + usuario + "'";
+                oracleCommand.CommandText = "SELECT P.PRODUCTO_NOMBRE, P.PRODUCTO_DESCRIPCION, P.PRODUCTO_PRECIO, C.CATEGORIA_NOMBRE,P.CANTIDAD FROM TBL_PRODUCTO P, TBL_CATEGORIA C, TBL_USUARIO V WHERE P.CATEGORIA_ID LIKE C.CATEGORIA_ID";
                 oracleCommand.CommandType = CommandType.Text;
                 OracleDataReader odr = oracleCommand.ExecuteReader();
                 int i = 0;
@@ -56,6 +56,7 @@ namespace e_commerce.Models
                     unProducto.Descripcion = odr.GetString(1);
                     unProducto.Precio = odr.GetDecimal(2);
                     unProducto.Categoria = odr.GetString(3);
+                    unProducto.Cantidad = (int)odr.GetDecimal(4);
                     listaProductos.Add(unProducto);
                     i = i + 1;
 
@@ -100,13 +101,13 @@ namespace e_commerce.Models
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "UPDATE TBL_PRODUCTO SET PRODUCTO_NOMBRE='" + producto.Nombre + "', PRODUCTO_DESCRIPCION = '" + producto.Descripcion + "', PRODUCTO_PRECIO=" + producto.Precio + " WHERE PRODUCTO_NOMBRE LIKE '" + producto.Nombre + "'";
+                oracleCommand.CommandText = "UPDATE TBL_PRODUCTO SET PRODUCTO_NOMBRE='" + producto.Nombre + "', PRODUCTO_DESCRIPCION = '" + producto.Descripcion + "', PRODUCTO_PRECIO=" + producto.Precio + "PRODUCTO_IMAGEN='"+ producto.Imagen+ "' WHERE PRODUCTO_NOMBRE LIKE '" + producto.Nombre + "'";
                 oracleCommand.CommandType = CommandType.Text;
                 oracleCommand.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(producto.Nombre + "|" + producto.Precio+"|"+e);
+                System.Windows.Forms.MessageBox.Show(producto.Nombre + "|" + producto.Imagen+"|"+e);
             }
         }
         public Boolean insertProducto(Producto producto)
@@ -124,8 +125,8 @@ namespace e_commerce.Models
                 //    myid = (int)odr.GetDecimal(0);
                 //}
                 oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "insert into tbl_producto (producto_id,categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,CANTIDAD,PRODUCTO_PRECIO) " +
-                    "VALUES (3," + producto.Categoria + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio + ")";
+                oracleCommand.CommandText = "insert into tbl_producto (producto_id,categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,CANTIDAD,PRODUCTO_PRECIO,PRODUCTO_IMAGEN) " +
+                    "VALUES (3," + producto.Categoria + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio + ",'"+producto.Imagen+"')";
                 //OracleParameter blobParameter = new OracleParameter();
                 //blobParameter.OracleDbType = OracleDbType.Blob;
                 //blobParameter.ParameterName = "BlobParameter";

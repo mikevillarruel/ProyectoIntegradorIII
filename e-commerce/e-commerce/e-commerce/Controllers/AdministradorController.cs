@@ -33,7 +33,7 @@ namespace e_commerce.Controllers
         {
             Servicio servicio = new Servicio();
             List<Producto> productos = new List<Producto>();
-            productos = servicio.selectMisProductos("1");
+            productos = servicio.selectAllProductos();
             return View(productos);
         }
 
@@ -51,20 +51,45 @@ namespace e_commerce.Controllers
             return View(producto);
         }
         [HttpPost]
-        public ActionResult modificarProducto(Producto producto)
+        public ActionResult modificarProducto(Producto producto, HttpPostedFileBase file)
         {
+            string pic = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+
+                string path = System.IO.Path.Combine(Server.MapPath("~/ImgProducto/"), pic);
+                System.Windows.Forms.MessageBox.Show("" + path);
+                // file is uploaded
+                file.SaveAs(path);
+            }
+            else
+            {
+
+                System.Windows.Forms.MessageBox.Show("" + pic);
+            }
+            producto.Imagen = file!=null? pic:producto.Imagen;
             Servicio servicio = new Servicio();
             servicio.updateUnProducto(producto);
             return RedirectToAction("Productos");
         }
-        public ActionResult agregarProducto(string productoNombre)
+        public ActionResult agregarProducto()
         {
             ViewBag.ListCategoria = obtenerCategorias();
             return View();
         }
         [HttpPost]
-        public ActionResult agregarProducto(Producto producto)
+        public ActionResult agregarProducto(Producto producto,HttpPostedFileBase file)
         {
+            string pic=null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("~/ImgProducto/"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+            }
+            producto.Imagen = pic;
             Servicio servicio = new Servicio();
             servicio.addProducto(producto);
             return RedirectToAction("Productos");

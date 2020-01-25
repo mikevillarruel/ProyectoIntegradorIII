@@ -135,6 +135,7 @@
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Compras.cs" />
     <Compile Include="Models\Conexion.cs" />
+    <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1669,6 +1670,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
+    <Folder Include="ImgProducto\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model e_commerce.Models.Home.HomeIndexViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -62,21 +63,32 @@
 </div>
 
 <div class="row product-container">
+    @foreach (var item in Model.productos)
+    {
+        <div class="col-md-3 col-sm-3 col-xs-6"
+             ="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:350px">
 
-    <div class="col-md-3 col-sm-3 col-xs-6" 
-         ="margin-bottom:8px">
-        <div class="thumbnail product-item" style="height:300px">
+                <img class="img-responsive" title="Click para ver detalles del producto"
+                     style="cursor:pointer;height:160px;width:100%"
+                     src="~/ImgProducto/@item.Imagen" />
 
-            <img class="img-responsive" title="Click para ver detalles del producto"
-                 style="cursor:pointer;height:160px;width:100%"
-                 src="~/Imagenes/81_12_24_2017_10_26_28.jpg" />
-
-            <div class="caption">
-                <h5>Huawei Y7</h5>
-                <p>$ 500.00 </p>
-                <p>Available</p>
-                <div class="product-item-badge">Nuevo</div>
+                <div class="caption">
+                    <h5>@item.Nombre</h5>
+                    <p>$ @item.Precio</p>
+                    <p>@item.Descripcion</p>
+                    <p>
+                        @if (item.Cantidad > 0)
+                        {
+                        <p>Disponible</p>
+                    }
+                    else
+                    {
+                        <p>No disponible</p>
+                    }
+                        </p>
+                    </div>
             </div>
         </div>
-    </div>
+    }
 </div>

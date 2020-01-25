@@ -16,11 +16,11 @@ namespace e_commerce.Controllers
             return prueba;
         }
 
-        public List<Producto> selectMisProductos(String usuario)
+        public List<Producto> selectAllProductos()
         {
             Operaciones op = new Operaciones();
             List<Producto> listaProductos = new List<Producto>();
-            listaProductos = op.selectMisProductos(usuario);
+            listaProductos = op.selectAllProductos();
 
             return listaProductos;
         }
