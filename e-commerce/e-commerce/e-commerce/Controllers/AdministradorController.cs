@@ -57,16 +57,10 @@ namespace e_commerce.Controllers
             if (file != null)
             {
                 pic = System.IO.Path.GetFileName(file.FileName);
-
                 string path = System.IO.Path.Combine(Server.MapPath("~/ImgProducto/"), pic);
-                System.Windows.Forms.MessageBox.Show("" + path);
+                //System.Windows.Forms.MessageBox.Show("" + path);
                 // file is uploaded
-                file.SaveAs(path);
-            }
-            else
-            {
-
-                System.Windows.Forms.MessageBox.Show("" + pic);
+                file.SaveAs(path); 
             }
             producto.Imagen = file!=null? pic:producto.Imagen;
             Servicio servicio = new Servicio();
