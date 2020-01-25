@@ -8,8 +8,10 @@ namespace e_commerce.Models
 {
     public class Categoria
     {
-        int id;
+
         String nombre;
+        Boolean activo;
+        Boolean inactivo;
 
 
         public Categoria()
@@ -17,14 +19,16 @@ namespace e_commerce.Models
 
         }
 
-        public Categoria(int id,String nombre)
+        public Categoria(String nombre,Boolean activo, Boolean inactivo)
         {
-            this.id = id;
             this.nombre = nombre;
+            this.activo = activo;
+            this.inactivo = inactivo;
         }
 
         public string Nombre { get => nombre; set => nombre = value; }
-        public int Id { get => id; set => id = value; }
+        public Boolean Activo { get => activo; set => activo = value; }
+        public Boolean Inactivo { get => inactivo; set => inactivo = value; }
 
     }
 

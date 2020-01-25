@@ -46,21 +46,20 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        
                         @foreach (var item in Model)
                         {
+                            int count = 1;
+                        <tr>
+                            <td>count</td>
+                            <td>@item.Imagen</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Descripcion</td>
+                            <td>@item.Categoria</td>
+                            <td>@item.Precio</td>
+                            <td>@Html.ActionLink("Editar", "modificarProducto", new { productoNombre = item.Nombre})</td>
 
-                            <tr>
-                                <td>@(Model.IndexOf(item) + 1)</td>
-                                <td>@item.Imagen</td>
-                                <td>@item.Nombre</td>
-                                <td>@item.Descripcion</td>
-                                <td>@item.Categoria</td>
-                                <td>@item.Precio</td>
-                                <td>@Html.ActionLink("Editar", "modificarProducto", new { productoNombre = item.Nombre })</td>
-
-
-                            </tr>
+                        </tr>
+                        count++;
                         }
 
                     </tbody>

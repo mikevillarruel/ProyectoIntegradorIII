@@ -46,13 +46,5 @@ namespace e_commerce.Controllers
             Operaciones op = new Operaciones();
             op.insertProducto(producto);
         }
-
-        public List<Categoria> getCategoria()
-        {
-            Operaciones op = new Operaciones();
-            List<Categoria> categorias = new List<Categoria>();
-            categorias = op.getCategoria();
-            return categorias;
-        }
     }
 }
