@@ -115,18 +115,17 @@ namespace e_commerce.Models
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "select categoria_id from tbl_categoria where categoria_nombre LIKE '" + producto.Categoria + "'";
-                oracleCommand.CommandType = CommandType.Text;
-                OracleDataReader odr = oracleCommand.ExecuteReader();
-                int myid = 0;
-                while (odr.Read())
-                {
-                    myid = (int)odr.GetDecimal(0);
-                }
-                System.Windows.Forms.MessageBox.Show(""+myid);
+                //oracleCommand.CommandText = "select categoria_id from tbl_categoria where categoria_nombre LIKE '" + producto.Categoria + "'";
+                //oracleCommand.CommandType = CommandType.Text;
+                //OracleDataReader odr = oracleCommand.ExecuteReader();
+                //int myid = 0;
+                //while (odr.Read())
+                //{
+                //    myid = (int)odr.GetDecimal(0);
+                //}
                 oracleCommand = conn.CreateCommand();
                 oracleCommand.CommandText = "insert into tbl_producto (producto_id,categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,CANTIDAD,PRODUCTO_PRECIO) " +
-                    "VALUES (2,"+ myid + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio+ ")";
+                    "VALUES (3," + producto.Categoria + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio + ")";
                 //OracleParameter blobParameter = new OracleParameter();
                 //blobParameter.OracleDbType = OracleDbType.Blob;
                 //blobParameter.ParameterName = "BlobParameter";
@@ -140,10 +139,38 @@ namespace e_commerce.Models
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(""+e);
+                System.Windows.Forms.MessageBox.Show("" + e);
 
                 return false;
             }
         }
+
+            public List<Categoria> getCategoria()
+            {
+                List<Categoria> categorias = new List<Categoria>();
+                try
+                {
+                    OracleConnection conn = Conexion.getInstancia().getConexion();
+                    OracleCommand oracleCommand = conn.CreateCommand();
+                    oracleCommand.CommandText = "SELECT * FROM TBL_CATEGORIA";
+                    oracleCommand.CommandType = CommandType.Text;
+                    OracleDataReader odr = oracleCommand.ExecuteReader();
+                    int i = 0;
+                    while (odr.Read())
+                    {
+                        Categoria cat = new Categoria();
+                        cat.Id = (int)odr.GetDecimal(0);
+                        cat.Nombre = odr.GetString(1);
+                        categorias.Add(cat);
+                        i = i + 1;
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Windows.Forms.MessageBox.Show("ALGO PASA" + e);
+                    return categorias;
+                }
+                return categorias;
+            }
+        }
     }
-}
