@@ -36,7 +36,7 @@ namespace e_commerce.Models
             return prueba;
         }
 
-        public List<Producto> selectAllProductos()
+        public List<Producto> selectMisProductos(String usuario)
         {
             List<Producto> listaProductos = new List<Producto>();
 
@@ -45,7 +45,7 @@ namespace e_commerce.Models
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "SELECT P.PRODUCTO_NOMBRE, P.PRODUCTO_DESCRIPCION, P.PRODUCTO_PRECIO, C.CATEGORIA_NOMBRE FROM TBL_PRODUCTO P, TBL_CATEGORIA C, TBL_USUARIO V WHERE P.CATEGORIA_ID LIKE C.CATEGORIA_ID";
+                oracleCommand.CommandText = "SELECT P.PRODUCTO_NOMBRE, P.PRODUCTO_DESCRIPCION, P.PRODUCTO_PRECIO, C.CATEGORIA_NOMBRE FROM TBL_PRODUCTO P, TBL_CATEGORIA C, TBL_USUARIO V WHERE P.CATEGORIA_ID LIKE C.CATEGORIA_ID AND V.USUARIO_ID LIKE P.USUARIO_ID AND V.USUARIO_ID LIKE '" + usuario + "'";
                 oracleCommand.CommandType = CommandType.Text;
                 OracleDataReader odr = oracleCommand.ExecuteReader();
                 int i = 0;

@@ -33,7 +33,7 @@ namespace e_commerce.Controllers
         {
             Servicio servicio = new Servicio();
             List<Producto> productos = new List<Producto>();
-            productos = servicio.selectAllProductos();
+            productos = servicio.selectMisProductos("1");
             return View(productos);
         }
 
