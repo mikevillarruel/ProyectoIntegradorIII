@@ -8,7 +8,7 @@
     <div class="container">
 
 
-        @using (Html.BeginForm("agregarProducto","Usuario",FormMethod.Post,new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("agregarProducto","Administrador",FormMethod.Post,new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 

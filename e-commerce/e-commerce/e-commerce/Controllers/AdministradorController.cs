@@ -32,7 +32,7 @@ namespace e_commerce.Controllers
         public ActionResult Proveedores()
         {
             Servicio servicio = new Servicio();
-            List<Usuario> proveedores = new List<Usuario>();
+            List<Proveedor> proveedores = new List<Proveedor>();
             proveedores = servicio.selectAllProveedores();
             return View(proveedores);
             
@@ -41,12 +41,12 @@ namespace e_commerce.Controllers
         public ActionResult modificarProveedor(int id)
         {
             Servicio servicio = new Servicio();
-            Usuario proveedor = new Usuario();
+            Proveedor proveedor = new Proveedor();
             proveedor = servicio.selectProveedor(id);
             return View(proveedor);            
         }
         [HttpPost]
-        public ActionResult modificarProveedor(Usuario proveedor)
+        public ActionResult modificarProveedor(Proveedor proveedor)
         {
             Servicio servicio = new Servicio();
             servicio.updateProveedor(proveedor);
@@ -58,7 +58,7 @@ namespace e_commerce.Controllers
         }
 
         [HttpPost]
-        public ActionResult agregarProveedor(Usuario proveedor)
+        public ActionResult agregarProveedor(Proveedor proveedor)
         {
             Servicio servicio = new Servicio();
             servicio.insertProveedor(proveedor);

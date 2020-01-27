@@ -8,28 +8,28 @@ namespace e_commerce.Controllers
 {
     public class Servicio
     {
-        public List<Usuario> selectAllProveedores()
+        public List<Proveedor> selectAllProveedores()
         {
             Operaciones op = new Operaciones();
-            List<Usuario> proveedores = new List<Usuario>();
+            List<Proveedor> proveedores = new List<Proveedor>();
             proveedores = op.selectAllProveedores();
             return proveedores;
         }
 
-        public Usuario selectProveedor(int id)
+        public Proveedor selectProveedor(int id)
         {
             Operaciones op = new Operaciones();
-            Usuario proveedor = new Usuario();
+            Proveedor proveedor = new Proveedor();
             proveedor = op.selectProveedor(id);
             return proveedor;
         }
 
-        public void updateProveedor(Usuario proveedor)
+        public void updateProveedor(Proveedor proveedor)
         {
             Operaciones op = new Operaciones();
             op.updateProveedor(proveedor);
         }
-        public void insertProveedor(Usuario proveedor)
+        public void insertProveedor(Proveedor proveedor)
         {
             Operaciones op = new Operaciones();
             op.insertProveedor(proveedor);
@@ -43,14 +43,6 @@ namespace e_commerce.Controllers
             return listaProductos;
         }
 
-        public Usuario iniciarSesion(String usuario, String contrasenia)
-        {
-             Usuario us = new Usuario();
-;            Operaciones op = new Operaciones();
-            us = op.usuarioPersona(usuario, contrasenia);
-            return us;
-           
-        }
         public Producto selectProducto(String nombrePro)
         {
             Operaciones op = new Operaciones();

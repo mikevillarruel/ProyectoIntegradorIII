@@ -9,38 +9,9 @@ namespace e_commerce.Models
 {
     public class Operaciones
     {
-        public Usuario usuarioPersona(String usuario, String contrasenia)
+        public List<Proveedor> selectAllProveedores()
         {
-            Usuario us = new Usuario();
-            try
-            {
-                OracleConnection conn = Conexion.getInstancia().getConexion();
-                OracleCommand oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "SELECT * FROM TBL_USUARIO WHERE USUARIO_EMAIL LIKE '" + usuario + "' AND USUARIO_CONTRASENIA LIKE '" + contrasenia + "'";
-                oracleCommand.CommandType = CommandType.Text;
-                OracleDataReader odr = oracleCommand.ExecuteReader();
-                int i = 0;
-                while (odr.Read())
-                {
-                    us.Id = (int)odr.GetDecimal(0);
-                    us.Tarjeta = (int)odr.GetDecimal(1);
-                    us.Nombre = odr.GetString(2);
-                    us.Apellido = odr.GetString(3);
-                    us.Email = odr.GetString(4);
-                    us.Contrasenia = odr.GetString(5);
-                    us.Tipo = odr.GetString(6);
-                }
-            }
-            catch(Exception e)
-            {
-                System.Windows.Forms.MessageBox.Show("catch en operacion"+e);
-                return us;
-            }
-            return us;
-        }
-        public List<Usuario> selectAllProveedores()
-        {
-            List<Usuario> proveedores = new List<Usuario>();
+            List<Proveedor> proveedores = new List<Proveedor>();
             try
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
@@ -51,7 +22,7 @@ namespace e_commerce.Models
                 int i = 0;
                 while (odr.Read())
                 {
-                    Usuario pro = new Usuario();
+                    Proveedor pro = new Proveedor();
                     pro.Id = (int)odr.GetDecimal(0);
                     pro.Nombre = odr.GetString(1);
                     pro.Email = odr.GetString(2);
@@ -69,9 +40,9 @@ namespace e_commerce.Models
             return proveedores;
         }
 
-        public Usuario selectProveedor(int id)
+        public Proveedor selectProveedor(int id)
         {
-            Usuario proveedor = new Usuario();
+            Proveedor proveedor = new Proveedor();
             try
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
@@ -96,7 +67,7 @@ namespace e_commerce.Models
             return proveedor;
         }
 
-        public void updateProveedor(Usuario proveedor)
+        public void updateProveedor(Proveedor proveedor)
         {
             try
             {
@@ -112,7 +83,7 @@ namespace e_commerce.Models
             }
         }
 
-        public Boolean insertProveedor(Usuario proveedor)
+        public Boolean insertProveedor(Proveedor proveedor)
         {
             try
             {
