@@ -11,22 +11,23 @@ namespace e_commerce.Controllers
     {
         public ActionResult Index()
         {
-            HomeIndexViewModel model = new HomeIndexViewModel();
-            return View(model.crearModelo());
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
+            //HomeIndexViewModel model = new HomeIndexViewModel();
+            //return View(model.crearModelo());
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+        //public ActionResult About()
+        //{
+        //    ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
+        //    return View();
+        //}
+
+        //public ActionResult Contact()
+        //{
+        //    ViewBag.Message = "Your contact page.";
+
+        //    return View();
+        //}
     }
 }
