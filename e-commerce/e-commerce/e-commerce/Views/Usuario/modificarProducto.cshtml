@@ -6,7 +6,7 @@
 }
     <div class="container">
 
-        @using (Html.BeginForm("modificarProducto","Administrador",FormMethod.Post,new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("modificarProducto","Usuario",FormMethod.Post,new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 

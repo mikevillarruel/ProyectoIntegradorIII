@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-
+﻿@model e_commerce.Models.Usuario
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -73,39 +73,44 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="../Admin/Dashboard">
+                <a class="nav-link" href="../Usuario/Dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Administrar</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="~/Administrador/Proveedores">
+                <a class="nav-link" href="~/Usuario/Proveedores">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Proveedores</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="~/Administrador/Productos">
+                <a class="nav-link" href="~/Usuario/Productos">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Productos</span>
                 </a>
             </li>
+            @if (Model.Id == 1)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Ordenes</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Ordenes</span>
-                </a>
-            </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Reportes</span>
-                </a>
-            </li>
-
+            }
 
 
         </ul>
