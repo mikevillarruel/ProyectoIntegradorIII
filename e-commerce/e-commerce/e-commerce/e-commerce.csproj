@@ -138,6 +138,7 @@
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1666,6 +1667,9 @@
     <Content Include="Views\Administrador\Productos.cshtml" />
     <Content Include="Views\Administrador\modificarProducto.cshtml" />
     <Content Include="Views\Administrador\agregarProducto.cshtml" />
+    <Content Include="Views\Administrador\Proveedores.cshtml" />
+    <Content Include="Views\Administrador\modificarProveedor.cshtml" />
+    <Content Include="Views\Administrador\agregarProveedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,33 +9,101 @@ namespace e_commerce.Models
 {
     public class Operaciones
     {
-        public String selectPrueba()
+        public List<Proveedor> selectAllProveedores()
         {
-            //ADMIN 1
-            //COMPRADOR 2
-            String prueba="";
+            List<Proveedor> proveedores = new List<Proveedor>();
             try
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
-
-                oracleCommand.CommandText = "SELECT PRO_NOMBRE FROM VNT_PRODUCTO";
+                oracleCommand.CommandText = "SELECT USUARIO_ID, USUARIO_NOMBRE, USUARIO_EMAIL, USUARIO_CONTRASENIA, USUARIO_TIPO FROM TBL_USUARIO WHERE usuario_tipo='P' or usuario_tipo='D'";
                 oracleCommand.CommandType = CommandType.Text;
                 OracleDataReader odr = oracleCommand.ExecuteReader();
-
-                if (odr.Read())
+                int i = 0;
+                while (odr.Read())
                 {
-                    prueba = odr.GetString(0);
-                    return prueba;
+                    Proveedor pro = new Proveedor();
+                    pro.Id = (int)odr.GetDecimal(0);
+                    pro.Nombre = odr.GetString(1);
+                    pro.Email = odr.GetString(2);
+                    pro.Contrasenia = odr.GetString(3);
+                    pro.Tipo = odr.GetString(4);
+                    proveedores.Add(pro);
+                    i = i + 1;
+                }
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("ALGO PASA en proveedores" + e);
+                return proveedores;
+            }
+            return proveedores;
+        }
+
+        public Proveedor selectProveedor(int id)
+        {
+            Proveedor proveedor = new Proveedor();
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT USUARIO_ID, USUARIO_NOMBRE, USUARIO_EMAIL, USUARIO_CONTRASENIA, USUARIO_TIPO FROM TBL_USUARIO WHERE USUARIO_ID=" + id;
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    proveedor.Id = (int) odr.GetDecimal(0);
+                    proveedor.Nombre = odr.GetString(1);
+                    proveedor.Email = odr.GetString(2);
+                    proveedor.Contrasenia = odr.GetString(3);
+                    proveedor.Tipo = odr.GetString(4);
                 }
             }
             catch
             {
-                return prueba;
+                return proveedor;
             }
-            return prueba;
+            return proveedor;
         }
 
+        public void updateProveedor(Proveedor proveedor)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "UPDATE TBL_USUARIO SET USUARIO_NOMBRE='" + proveedor.Nombre + "', USUARIO_EMAIL = '" + proveedor.Email + "', USUARIO_CONTRASENIA='" + proveedor.Contrasenia + "' WHERE USUARIO_ID =" + proveedor.Id;
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(proveedor.Nombre + "|" + proveedor.Id+ e);
+            }
+        }
+
+        public Boolean insertProveedor(Proveedor proveedor)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "insert into tbl_usuario (USUARIO_ID,TARJETA_ID, USUARIO_NOMBRE, USUARIO_EMAIL,USUARIO_CONTRASENIA,USUARIO_TIPO) " +
+                    "VALUES (4,1,'" + proveedor.Nombre + "','" +  proveedor.Email + "','" + proveedor.Contrasenia + "','D')";
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("" + e);
+
+                return false;
+            }
+        }
         public List<Producto> selectAllProductos()
         {
             List<Producto> listaProductos = new List<Producto>();
@@ -45,7 +113,7 @@ namespace e_commerce.Models
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "SELECT P.PRODUCTO_NOMBRE, P.PRODUCTO_DESCRIPCION, P.PRODUCTO_PRECIO, C.CATEGORIA_NOMBRE,P.PRODUCTO_CANTIDAD,P.PRODUCTO_IMAGEN FROM TBL_PRODUCTO P, TBL_CATEGORIA C, TBL_USUARIO V WHERE P.CATEGORIA_ID LIKE C.CATEGORIA_ID";
+                oracleCommand.CommandText = "SELECT P.PRODUCTO_NOMBRE, P.PRODUCTO_DESCRIPCION, P.PRODUCTO_PRECIO, C.CATEGORIA_NOMBRE,P.PRODUCTO_CANTIDAD,P.PRODUCTO_IMAGEN FROM TBL_PRODUCTO P, TBL_CATEGORIA C WHERE C.CATEGORIA_ID LIKE P.CATEGORIA_ID";
                 oracleCommand.CommandType = CommandType.Text;
                 OracleDataReader odr = oracleCommand.ExecuteReader();
                 int i = 0;
@@ -65,7 +133,7 @@ namespace e_commerce.Models
             }
             catch(Exception e)
             {
-                System.Windows.Forms.MessageBox.Show("ALGO PASA" + e);
+                System.Windows.Forms.MessageBox.Show("ALGO PASA en productos" + e);
                 return listaProductos;
             }
             return listaProductos;
@@ -119,23 +187,9 @@ namespace e_commerce.Models
             {
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
-                //oracleCommand.CommandText = "select categoria_id from tbl_categoria where categoria_nombre LIKE '" + producto.Categoria + "'";
-                //oracleCommand.CommandType = CommandType.Text;
-                //OracleDataReader odr = oracleCommand.ExecuteReader();
-                //int myid = 0;
-                //while (odr.Read())
-                //{
-                //    myid = (int)odr.GetDecimal(0);
-                //}
                 oracleCommand = conn.CreateCommand();
                 oracleCommand.CommandText = "insert into tbl_producto (producto_id,categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,PRODUCTO_CANTIDAD,PRODUCTO_PRECIO,PRODUCTO_IMAGEN) " +
                     "VALUES (3," + producto.Categoria + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio + ",'"+producto.Imagen+"')";
-                //OracleParameter blobParameter = new OracleParameter();
-                //blobParameter.OracleDbType = OracleDbType.Blob;
-                //blobParameter.ParameterName = "BlobParameter";
-                //blobParameter.Value = img;
-                //oracleCommand.Parameters.Add(blobParameter);
-
                 oracleCommand.CommandType = CommandType.Text;
                 oracleCommand.ExecuteNonQuery();
 

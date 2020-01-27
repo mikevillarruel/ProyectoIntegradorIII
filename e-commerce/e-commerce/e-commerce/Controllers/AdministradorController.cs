@@ -29,6 +29,43 @@ namespace e_commerce.Controllers
             return View();
         }
 
+        public ActionResult Proveedores()
+        {
+            Servicio servicio = new Servicio();
+            List<Proveedor> proveedores = new List<Proveedor>();
+            proveedores = servicio.selectAllProveedores();
+            return View(proveedores);
+            
+        }
+        
+        public ActionResult modificarProveedor(int id)
+        {
+            Servicio servicio = new Servicio();
+            Proveedor proveedor = new Proveedor();
+            proveedor = servicio.selectProveedor(id);
+            return View(proveedor);            
+        }
+        [HttpPost]
+        public ActionResult modificarProveedor(Proveedor proveedor)
+        {
+            Servicio servicio = new Servicio();
+            servicio.updateProveedor(proveedor);
+            return RedirectToAction("Proveedores");
+        }
+        public ActionResult agregarProveedor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult agregarProveedor(Proveedor proveedor)
+        {
+            Servicio servicio = new Servicio();
+            servicio.insertProveedor(proveedor);
+            return RedirectToAction("Proveedores");
+        }
+
+
         public ActionResult Productos()
         {
             Servicio servicio = new Servicio();

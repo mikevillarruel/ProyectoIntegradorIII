@@ -8,14 +8,32 @@ namespace e_commerce.Controllers
 {
     public class Servicio
     {
-        public String selectPrueba()
+        public List<Proveedor> selectAllProveedores()
         {
-            Operaciones operaciones = new Operaciones();
-            String prueba;
-            prueba = operaciones.selectPrueba();
-            return prueba;
+            Operaciones op = new Operaciones();
+            List<Proveedor> proveedores = new List<Proveedor>();
+            proveedores = op.selectAllProveedores();
+            return proveedores;
         }
 
+        public Proveedor selectProveedor(int id)
+        {
+            Operaciones op = new Operaciones();
+            Proveedor proveedor = new Proveedor();
+            proveedor = op.selectProveedor(id);
+            return proveedor;
+        }
+
+        public void updateProveedor(Proveedor proveedor)
+        {
+            Operaciones op = new Operaciones();
+            op.updateProveedor(proveedor);
+        }
+        public void insertProveedor(Proveedor proveedor)
+        {
+            Operaciones op = new Operaciones();
+            op.insertProveedor(proveedor);
+        }
         public List<Producto> selectAllProductos()
         {
             Operaciones op = new Operaciones();
