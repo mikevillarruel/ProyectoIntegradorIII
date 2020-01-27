@@ -126,9 +126,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Servicio.cs" />
+    <Compile Include="Filters\VerificaSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1670,6 +1672,8 @@
     <Content Include="Views\Administrador\Proveedores.cshtml" />
     <Content Include="Views\Administrador\modificarProveedor.cshtml" />
     <Content Include="Views\Administrador\agregarProveedor.cshtml" />
+    <Content Include="Views\Acceso\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

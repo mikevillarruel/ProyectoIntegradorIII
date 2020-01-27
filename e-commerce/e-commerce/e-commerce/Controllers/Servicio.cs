@@ -8,6 +8,14 @@ namespace e_commerce.Controllers
 {
     public class Servicio
     {
+        public Proveedor iniciarSesion(String usuario, String contrasenia)
+        {
+            Proveedor us = new Proveedor();
+            ; Operaciones op = new Operaciones();
+            us = op.usuarioPersona(usuario, contrasenia);
+            return us;
+
+        }
         public List<Proveedor> selectAllProveedores()
         {
             Operaciones op = new Operaciones();

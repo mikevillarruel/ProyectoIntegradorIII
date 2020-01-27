@@ -9,6 +9,36 @@ namespace e_commerce.Models
 {
     public class Operaciones
     {
+        public Proveedor usuarioPersona(String usuario, String contrasenia)
+        {
+            List<Proveedor> proveedores = new List<Proveedor>();
+            Proveedor us = new Proveedor();
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT * FROM TBL_USUARIO WHERE USUARIO_EMAIL LIKE '" + usuario + "' AND USUARIO_CONTRASENIA LIKE '" + contrasenia + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    us.Id = (int)odr.GetDecimal(0);
+                    us.Tarjeta = (int)odr.GetDecimal(1);
+                    us.Nombre = odr.GetString(2);
+                    us.Apellido = odr.GetString(3);
+                    us.Email = odr.GetString(4);
+                    us.Contrasenia = odr.GetString(5);
+                    us.Tipo = odr.GetString(6);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("catch en operacion" + e);
+                return us;
+            }
+            return us;
+        }
         public List<Proveedor> selectAllProveedores()
         {
             List<Proveedor> proveedores = new List<Proveedor>();
