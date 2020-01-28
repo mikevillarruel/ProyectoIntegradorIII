@@ -1,4 +1,4 @@
-﻿using e_commerce.Models;
+﻿using e_commerce.siproe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,9 @@ namespace e_commerce.Controllers
     public class AdministradorController : Controller
     {
         // GET: Administrador
-
+        siproe.ServicioWebSoapClient servicio = new siproe.ServicioWebSoapClient();
         public List<SelectListItem> obtenerCategorias()
         {
-            Servicio servicio = new Servicio();
             List<SelectListItem> lista = new List<SelectListItem>();
             List<Categoria> cat = new List<Categoria>();
             cat = servicio.getCategoria();
@@ -31,7 +30,6 @@ namespace e_commerce.Controllers
 
         public ActionResult Proveedores()
         {
-            Servicio servicio = new Servicio();
             List<Proveedor> proveedores = new List<Proveedor>();
             proveedores = servicio.selectAllProveedores();
             return View(proveedores);
@@ -40,7 +38,6 @@ namespace e_commerce.Controllers
         
         public ActionResult modificarProveedor(int id)
         {
-            Servicio servicio = new Servicio();
             Proveedor proveedor = new Proveedor();
             proveedor = servicio.selectProveedor(id);
             return View(proveedor);            
@@ -48,7 +45,6 @@ namespace e_commerce.Controllers
         [HttpPost]
         public ActionResult modificarProveedor(Proveedor proveedor)
         {
-            Servicio servicio = new Servicio();
             servicio.updateProveedor(proveedor);
             return RedirectToAction("Proveedores");
         }
@@ -60,7 +56,6 @@ namespace e_commerce.Controllers
         [HttpPost]
         public ActionResult agregarProveedor(Proveedor proveedor)
         {
-            Servicio servicio = new Servicio();
             servicio.insertProveedor(proveedor);
             return RedirectToAction("Proveedores");
         }
@@ -68,7 +63,6 @@ namespace e_commerce.Controllers
 
         public ActionResult Productos()
         {
-            Servicio servicio = new Servicio();
             List<Producto> productos = new List<Producto>();
             productos = servicio.selectAllProductos();
             return View(productos);
@@ -81,7 +75,6 @@ namespace e_commerce.Controllers
 
         public ActionResult modificarProducto(string productoNombre)
         {
-            Servicio servicio = new Servicio();
             Producto producto = new Producto();
             ViewBag.ListCategoria = obtenerCategorias();
             producto = servicio.selectProducto(productoNombre);
@@ -100,7 +93,6 @@ namespace e_commerce.Controllers
                 file.SaveAs(path); 
             }
             producto.Imagen = file!=null? pic:producto.Imagen;
-            Servicio servicio = new Servicio();
             servicio.updateUnProducto(producto);
             return RedirectToAction("Productos");
         }
@@ -121,7 +113,6 @@ namespace e_commerce.Controllers
                 file.SaveAs(path);
             }
             producto.Imagen = pic;
-            Servicio servicio = new Servicio();
             servicio.addProducto(producto);
             return RedirectToAction("Productos");
         }

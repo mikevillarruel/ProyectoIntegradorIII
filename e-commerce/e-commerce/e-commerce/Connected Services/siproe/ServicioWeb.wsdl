@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://siproe.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://siproe.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://siproe.com/">
+      <s:element name="iniciarSesion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasenia" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="iniciarSesionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="iniciarSesionResult" type="tns:Proveedor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Proveedor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarjeta" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apellido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contrasenia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="selectAllProveedores">
+        <s:complexType />
+      </s:element>
+      <s:element name="selectAllProveedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectAllProveedoresResult" type="tns:ArrayOfProveedor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProveedor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Proveedor" nillable="true" type="tns:Proveedor" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="selectProveedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="selectProveedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectProveedorResult" type="tns:Proveedor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateProveedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="proveedor" type="tns:Proveedor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateProveedorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="insertProveedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="proveedor" type="tns:Proveedor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertProveedorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="selectAllProductos">
+        <s:complexType />
+      </s:element>
+      <s:element name="selectAllProductosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectAllProductosResult" type="tns:ArrayOfProducto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProducto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Producto" nillable="true" type="tns:Producto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Producto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Precio" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Imagen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categoria" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="selectProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombrePro" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="selectProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectProductoResult" type="tns:Producto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateUnProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="producto" type="tns:Producto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateUnProductoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="addProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="producto" type="tns:Producto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addProductoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="getCategoria">
+        <s:complexType />
+      </s:element>
+      <s:element name="getCategoriaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCategoriaResult" type="tns:ArrayOfCategoria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCategoria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Categoria" nillable="true" type="tns:Categoria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Categoria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="iniciarSesionSoapIn">
+    <wsdl:part name="parameters" element="tns:iniciarSesion" />
+  </wsdl:message>
+  <wsdl:message name="iniciarSesionSoapOut">
+    <wsdl:part name="parameters" element="tns:iniciarSesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="selectAllProveedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:selectAllProveedores" />
+  </wsdl:message>
+  <wsdl:message name="selectAllProveedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:selectAllProveedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="selectProveedorSoapIn">
+    <wsdl:part name="parameters" element="tns:selectProveedor" />
+  </wsdl:message>
+  <wsdl:message name="selectProveedorSoapOut">
+    <wsdl:part name="parameters" element="tns:selectProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateProveedorSoapIn">
+    <wsdl:part name="parameters" element="tns:updateProveedor" />
+  </wsdl:message>
+  <wsdl:message name="updateProveedorSoapOut">
+    <wsdl:part name="parameters" element="tns:updateProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertProveedorSoapIn">
+    <wsdl:part name="parameters" element="tns:insertProveedor" />
+  </wsdl:message>
+  <wsdl:message name="insertProveedorSoapOut">
+    <wsdl:part name="parameters" element="tns:insertProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="selectAllProductosSoapIn">
+    <wsdl:part name="parameters" element="tns:selectAllProductos" />
+  </wsdl:message>
+  <wsdl:message name="selectAllProductosSoapOut">
+    <wsdl:part name="parameters" element="tns:selectAllProductosResponse" />
+  </wsdl:message>
+  <wsdl:message name="selectProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:selectProducto" />
+  </wsdl:message>
+  <wsdl:message name="selectProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:selectProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateUnProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:updateUnProducto" />
+  </wsdl:message>
+  <wsdl:message name="updateUnProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:updateUnProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="addProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:addProducto" />
+  </wsdl:message>
+  <wsdl:message name="addProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:addProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCategoriaSoapIn">
+    <wsdl:part name="parameters" element="tns:getCategoria" />
+  </wsdl:message>
+  <wsdl:message name="getCategoriaSoapOut">
+    <wsdl:part name="parameters" element="tns:getCategoriaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServicioWebSoap">
+    <wsdl:operation name="iniciarSesion">
+      <wsdl:input message="tns:iniciarSesionSoapIn" />
+      <wsdl:output message="tns:iniciarSesionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="selectAllProveedores">
+      <wsdl:input message="tns:selectAllProveedoresSoapIn" />
+      <wsdl:output message="tns:selectAllProveedoresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="selectProveedor">
+      <wsdl:input message="tns:selectProveedorSoapIn" />
+      <wsdl:output message="tns:selectProveedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProveedor">
+      <wsdl:input message="tns:updateProveedorSoapIn" />
+      <wsdl:output message="tns:updateProveedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertProveedor">
+      <wsdl:input message="tns:insertProveedorSoapIn" />
+      <wsdl:output message="tns:insertProveedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="selectAllProductos">
+      <wsdl:input message="tns:selectAllProductosSoapIn" />
+      <wsdl:output message="tns:selectAllProductosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="selectProducto">
+      <wsdl:input message="tns:selectProductoSoapIn" />
+      <wsdl:output message="tns:selectProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateUnProducto">
+      <wsdl:input message="tns:updateUnProductoSoapIn" />
+      <wsdl:output message="tns:updateUnProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addProducto">
+      <wsdl:input message="tns:addProductoSoapIn" />
+      <wsdl:output message="tns:addProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCategoria">
+      <wsdl:input message="tns:getCategoriaSoapIn" />
+      <wsdl:output message="tns:getCategoriaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicioWebSoap" type="tns:ServicioWebSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="iniciarSesion">
+      <soap:operation soapAction="http://siproe.com/iniciarSesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectAllProveedores">
+      <soap:operation soapAction="http://siproe.com/selectAllProveedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectProveedor">
+      <soap:operation soapAction="http://siproe.com/selectProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProveedor">
+      <soap:operation soapAction="http://siproe.com/updateProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertProveedor">
+      <soap:operation soapAction="http://siproe.com/insertProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectAllProductos">
+      <soap:operation soapAction="http://siproe.com/selectAllProductos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectProducto">
+      <soap:operation soapAction="http://siproe.com/selectProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUnProducto">
+      <soap:operation soapAction="http://siproe.com/updateUnProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addProducto">
+      <soap:operation soapAction="http://siproe.com/addProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoria">
+      <soap:operation soapAction="http://siproe.com/getCategoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServicioWebSoap12" type="tns:ServicioWebSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="iniciarSesion">
+      <soap12:operation soapAction="http://siproe.com/iniciarSesion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectAllProveedores">
+      <soap12:operation soapAction="http://siproe.com/selectAllProveedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectProveedor">
+      <soap12:operation soapAction="http://siproe.com/selectProveedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProveedor">
+      <soap12:operation soapAction="http://siproe.com/updateProveedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertProveedor">
+      <soap12:operation soapAction="http://siproe.com/insertProveedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectAllProductos">
+      <soap12:operation soapAction="http://siproe.com/selectAllProductos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectProducto">
+      <soap12:operation soapAction="http://siproe.com/selectProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUnProducto">
+      <soap12:operation soapAction="http://siproe.com/updateUnProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addProducto">
+      <soap12:operation soapAction="http://siproe.com/addProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoria">
+      <soap12:operation soapAction="http://siproe.com/getCategoria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioWeb">
+    <wsdl:port name="ServicioWebSoap" binding="tns:ServicioWebSoap">
+      <soap:address location="https://localhost:44379/WebService/ServicioWeb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServicioWebSoap12" binding="tns:ServicioWebSoap12">
+      <soap12:address location="https://localhost:44379/WebService/ServicioWeb.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

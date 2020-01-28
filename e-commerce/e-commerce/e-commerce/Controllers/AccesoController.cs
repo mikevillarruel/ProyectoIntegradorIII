@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using e_commerce.Models;
+using e_commerce.siproe;
 
 namespace e_commerce.Controllers
 {
     public class AccesoController : Controller
     {
         // GET: Acceso
+
+        siproe.ServicioWebSoapClient servicio = new siproe.ServicioWebSoapClient();
         public ActionResult Login()
         {
             return View();
@@ -20,7 +19,6 @@ namespace e_commerce.Controllers
             try
             {
                 Proveedor us = new Proveedor();
-                Servicio servicio = new Servicio();
                 us = servicio.iniciarSesion(Usuario, Pass);
                 if (us.Email == null)
                 {

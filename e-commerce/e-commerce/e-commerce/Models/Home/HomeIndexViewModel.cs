@@ -8,11 +8,11 @@ namespace e_commerce.Models.Home
 {
     public class HomeIndexViewModel
     {
-        public List<Producto> productos=new List<Producto>();
+        public List<siproe.Producto> productos=new List<siproe.Producto>();
         public HomeIndexViewModel crearModelo()
         {
-            Servicio servicio = new Servicio();
-            List<Producto> productos = new List<Producto>();
+            siproe.ServicioWebSoapClient servicio = new siproe.ServicioWebSoapClient();
+            List<siproe.Producto> productos = new List<siproe.Producto>();
             return new HomeIndexViewModel
             {
                 productos = servicio.selectAllProductos()

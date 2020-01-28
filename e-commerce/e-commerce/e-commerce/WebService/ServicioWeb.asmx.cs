@@ -1,81 +1,96 @@
-﻿using System;
+﻿using e_commerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using e_commerce.Models;
+using System.Web.Services;
 
-namespace e_commerce.Controllers
+namespace e_commerce.ServicioWeb
 {
-    public class Servicio
+    /// <summary>
+    /// Descripción breve de ServicioWeb
+    /// </summary>
+    [WebService(Namespace = "http://siproe.com/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
+    // [System.Web.Script.Services.ScriptService]
+    public class ServicioWeb : System.Web.Services.WebService
     {
+
+        Operaciones op = new Operaciones();
+
+        [WebMethod]
         public Proveedor iniciarSesion(String usuario, String contrasenia)
         {
             Proveedor us = new Proveedor();
-            Operaciones op = new Operaciones();
             us = op.usuarioPersona(usuario, contrasenia);
             return us;
 
         }
+
+        [WebMethod]
         public List<Proveedor> selectAllProveedores()
         {
-            Operaciones op = new Operaciones();
             List<Proveedor> proveedores = new List<Proveedor>();
             proveedores = op.selectAllProveedores();
             return proveedores;
         }
 
+        [WebMethod]
         public Proveedor selectProveedor(int id)
         {
-            Operaciones op = new Operaciones();
             Proveedor proveedor = new Proveedor();
             proveedor = op.selectProveedor(id);
             return proveedor;
         }
 
+        [WebMethod]
         public void updateProveedor(Proveedor proveedor)
         {
-            Operaciones op = new Operaciones();
             op.updateProveedor(proveedor);
         }
+
+        [WebMethod]
         public void insertProveedor(Proveedor proveedor)
         {
-            Operaciones op = new Operaciones();
             op.insertProveedor(proveedor);
         }
+
+        [WebMethod]
         public List<Producto> selectAllProductos()
         {
-            Operaciones op = new Operaciones();
             List<Producto> listaProductos = new List<Producto>();
             listaProductos = op.selectAllProductos();
 
             return listaProductos;
         }
 
+        [WebMethod]
         public Producto selectProducto(String nombrePro)
         {
-            Operaciones op = new Operaciones();
             Producto producto = new Producto();
 
             producto = op.selectUnProducto(nombrePro);
 
             return producto;
         }
+
+        [WebMethod]
         public void updateUnProducto(Producto producto)
         {
-            Operaciones op = new Operaciones();
             op.updateUnProducto(producto);
         }
 
+        [WebMethod]
         public void addProducto(Producto producto)
         {
-
-            Operaciones op = new Operaciones();
             op.insertProducto(producto);
         }
 
+        [WebMethod]
         public List<Categoria> getCategoria()
         {
-            Operaciones op = new Operaciones();
             List<Categoria> categorias = new List<Categoria>();
             categorias = op.getCategoria();
             return categorias;
