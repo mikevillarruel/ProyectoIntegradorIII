@@ -13,6 +13,7 @@ namespace e_commerce.Controllers
         {
             return View();
         }
+       
         [HttpPost]
         public ActionResult Login(String Usuario, String Pass)
         {
@@ -37,6 +38,31 @@ namespace e_commerce.Controllers
                 ViewBag.Error = ex.Message;
                 return View();
             }
+        }
+
+        public ActionResult Registrar()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Registrar(Proveedor proveedor)
+        {
+            
+            if (proveedor.Tipo.Equals("P") || proveedor.Tipo.Equals("D"))
+            {
+                servicio.insertProveedor(proveedor);
+            }
+            else if (proveedor.Tipo.Equals("C"))
+            {
+                servicio.insertProveedor(proveedor);
+            }
+            else if (proveedor.Tipo.Equals("A"))
+            {
+                servicio.insertProveedor(proveedor);
+            }
+            ViewBag.Message = "";
+
+            return RedirectToAction("Login");
         }
     }
 }
