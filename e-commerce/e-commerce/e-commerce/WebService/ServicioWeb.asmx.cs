@@ -96,5 +96,22 @@ namespace e_commerce.ServicioWeb
             categorias = op.getCategoria();
             return categorias;
         }
+
+        [WebMethod]
+        public void extraerDatos(String extension, String savePath)
+        {
+            op.extraerDatos(extension,savePath);
+        }
+
+        [WebMethod]
+        public void deleteUnProducto(String productoID)
+        {
+            op.deleteUnProducto(productoID);
+        }
+        [WebMethod]
+        public void deleteUnProveedor(int usuarioID)
+        {
+            op.deleteUnProveedor(usuarioID);
+        }
     }
 }

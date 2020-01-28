@@ -327,6 +327,35 @@ namespace e_commerce.Models
 
         }
 
+        public void deleteUnProducto(String productoID)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "DELETE FROM TBL_PRODUCTO WHERE PRODUCTO_NOMBRE LIKE '" + productoID + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
 
+            }
+        }
+        public void deleteUnProveedor(int usuarioID)
+        {
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "DELETE FROM TBL_USUARIO WHERE USUARIO_ID LIKE '" + usuarioID + "'";
+                oracleCommand.CommandType = CommandType.Text;
+                oracleCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
     }
 }

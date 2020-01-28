@@ -140,7 +140,7 @@ namespace e_commerce.Controllers
         [HttpPost]
             public ActionResult subirArchivo(Producto producto, HttpPostedFileBase file)
         {
-            
+            System.Windows.Forms.MessageBox.Show("Entro");
             String pic=null;
             String ext = null;
             if (file != null)
@@ -160,5 +160,17 @@ namespace e_commerce.Controllers
 
         }
 
+
+        public ActionResult eliminarProducto(String productoNombre)
+        {
+            servicio.deleteUnProducto(productoNombre);
+            return RedirectToAction("Productos");
+        }
+        
+        public ActionResult eliminarProveedor(int id)
+        {
+            servicio.deleteUnProveedor(id);
+            return RedirectToAction("Proveedores");
+        }
     }
 }

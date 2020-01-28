@@ -200,6 +200,12 @@
     <Content Include="Connected Services\siproe\e_commerce.siproe.updateUnProductoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\siproe\e_commerce.siproe.extraerDatosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\siproe\e_commerce.siproe.deleteUnProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\siproe\ServicioWeb.disco" />
     <None Include="Connected Services\siproe\configuration91.svcinfo" />
     <None Include="Connected Services\siproe\configuration.svcinfo" />

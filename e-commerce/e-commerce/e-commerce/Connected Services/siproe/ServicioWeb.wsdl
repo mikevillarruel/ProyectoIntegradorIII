@@ -94,6 +94,7 @@
       </s:complexType>
       <s:complexType name="Producto">
         <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Precio" type="s:decimal" />
@@ -157,6 +158,37 @@
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="extraerDatos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="extension" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="savePath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="extraerDatosResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="deleteUnProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="productoID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteUnProductoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="deleteUnProveedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usuarioID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteUnProveedorResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="iniciarSesionSoapIn">
@@ -219,6 +251,24 @@
   <wsdl:message name="getCategoriaSoapOut">
     <wsdl:part name="parameters" element="tns:getCategoriaResponse" />
   </wsdl:message>
+  <wsdl:message name="extraerDatosSoapIn">
+    <wsdl:part name="parameters" element="tns:extraerDatos" />
+  </wsdl:message>
+  <wsdl:message name="extraerDatosSoapOut">
+    <wsdl:part name="parameters" element="tns:extraerDatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteUnProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteUnProducto" />
+  </wsdl:message>
+  <wsdl:message name="deleteUnProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteUnProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteUnProveedorSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteUnProveedor" />
+  </wsdl:message>
+  <wsdl:message name="deleteUnProveedorSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteUnProveedorResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServicioWebSoap">
     <wsdl:operation name="iniciarSesion">
       <wsdl:input message="tns:iniciarSesionSoapIn" />
@@ -259,6 +309,18 @@
     <wsdl:operation name="getCategoria">
       <wsdl:input message="tns:getCategoriaSoapIn" />
       <wsdl:output message="tns:getCategoriaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="extraerDatos">
+      <wsdl:input message="tns:extraerDatosSoapIn" />
+      <wsdl:output message="tns:extraerDatosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUnProducto">
+      <wsdl:input message="tns:deleteUnProductoSoapIn" />
+      <wsdl:output message="tns:deleteUnProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUnProveedor">
+      <wsdl:input message="tns:deleteUnProveedorSoapIn" />
+      <wsdl:output message="tns:deleteUnProveedorSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServicioWebSoap" type="tns:ServicioWebSoap">
@@ -353,6 +415,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="extraerDatos">
+      <soap:operation soapAction="http://siproe.com/extraerDatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUnProducto">
+      <soap:operation soapAction="http://siproe.com/deleteUnProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUnProveedor">
+      <soap:operation soapAction="http://siproe.com/deleteUnProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ServicioWebSoap12" type="tns:ServicioWebSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -439,6 +528,33 @@
     </wsdl:operation>
     <wsdl:operation name="getCategoria">
       <soap12:operation soapAction="http://siproe.com/getCategoria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="extraerDatos">
+      <soap12:operation soapAction="http://siproe.com/extraerDatos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUnProducto">
+      <soap12:operation soapAction="http://siproe.com/deleteUnProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUnProveedor">
+      <soap12:operation soapAction="http://siproe.com/deleteUnProveedor" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

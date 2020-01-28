@@ -18,7 +18,7 @@
             <i class="fas fa-table"></i>
             Información del Proveedor
             <a href="../Administrador/agregarProveedor" class="btn btn-info pull-right fa fa-plus">Añadir</a>
-            <a href="../Administrador/agregarProveedor" class="btn btn-info pull-right fa fa-plus">Subir Documento</a>
+            
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -47,14 +47,15 @@
                         @foreach (var item in Model)
                         {
 
-                            <tr>
-                                <td>@(Model.IndexOf(item) + 1)</td>
-                                <td>@item.Nombre</td>
-                                <td>@item.Email</td>
-                                <td>@item.Contrasenia</td>
-                                <td>@Html.ActionLink("Editar", "modificarProveedor", new { id = item.Id })</td>
+                        <tr>
+                            <td>@(Model.IndexOf(item) + 1)</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Email</td>
+                            <td>@item.Contrasenia</td>
+                            <td>@Html.ActionLink("Editar", "modificarProveedor", new { id = item.Id })</td>
+                            <td>@Html.ActionLink("Eliminar", "eliminarProveedor", new { id = item.Id })</td>
 
-                            </tr>
+                        </tr>
                         }
 
                     </tbody>

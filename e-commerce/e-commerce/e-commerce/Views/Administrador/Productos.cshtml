@@ -18,6 +18,7 @@
             <i class="fas fa-table"></i>
             Detalle del Producto
             <a href="../Administrador/agregarProducto" class="btn btn-info pull-right fa fa-plus">Añadir</a>
+            <a href="../Administrador/subirArchivo" class="btn btn-info pull-right fa fa-plus">Subir Documento</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -50,17 +51,18 @@
                         @foreach (var item in Model)
                         {
 
-                            <tr>
-                                <td>@(Model.IndexOf(item) + 1)</td>
-                                <td>@item.Imagen</td>
-                                <td>@item.Nombre</td>
-                                <td>@item.Descripcion</td>
-                                <td>@item.Categoria</td>
-                                <td>@item.Precio</td>
-                                <td>@Html.ActionLink("Editar", "modificarProducto", new { productoNombre = item.Nombre })</td>
+                        <tr>
+                            <td>@(Model.IndexOf(item) + 1)</td>
+                            <td>@item.Imagen</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Descripcion</td>
+                            <td>@item.Categoria</td>
+                            <td>@item.Precio</td>
+                            <td>@Html.ActionLink("Editar", "modificarProducto", new { productoNombre = item.Nombre })</td>
+                            <td>@Html.ActionLink("Eliminar", "eliminarProducto", new { productoNombre = item.Nombre })</td>
 
 
-                            </tr>
+                        </tr>
                         }
 
                     </tbody>

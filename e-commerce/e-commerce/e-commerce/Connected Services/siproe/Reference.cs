@@ -161,6 +161,8 @@ namespace e_commerce.siproe {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private int IdField;
+        
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreField;
         
@@ -187,6 +189,19 @@ namespace e_commerce.siproe {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Nombre {
             get {
@@ -200,7 +215,7 @@ namespace e_commerce.siproe {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string Descripcion {
             get {
                 return this.DescripcionField;
@@ -213,7 +228,7 @@ namespace e_commerce.siproe {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
         public decimal Precio {
             get {
                 return this.PrecioField;
@@ -226,7 +241,7 @@ namespace e_commerce.siproe {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
         public string Imagen {
             get {
                 return this.ImagenField;
@@ -239,7 +254,7 @@ namespace e_commerce.siproe {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public string Categoria {
             get {
                 return this.CategoriaField;
@@ -252,7 +267,7 @@ namespace e_commerce.siproe {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
         public int Cantidad {
             get {
                 return this.CantidadField;
@@ -408,6 +423,26 @@ namespace e_commerce.siproe {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://siproe.com/getCategoria", ReplyAction="*")]
         System.Threading.Tasks.Task<e_commerce.siproe.getCategoriaResponse> getCategoriaAsync(e_commerce.siproe.getCategoriaRequest request);
+        
+        // CODEGEN: Generating message contract since element name extension from namespace http://siproe.com/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://siproe.com/extraerDatos", ReplyAction="*")]
+        e_commerce.siproe.extraerDatosResponse extraerDatos(e_commerce.siproe.extraerDatosRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://siproe.com/extraerDatos", ReplyAction="*")]
+        System.Threading.Tasks.Task<e_commerce.siproe.extraerDatosResponse> extraerDatosAsync(e_commerce.siproe.extraerDatosRequest request);
+        
+        // CODEGEN: Generating message contract since element name productoID from namespace http://siproe.com/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://siproe.com/deleteUnProducto", ReplyAction="*")]
+        e_commerce.siproe.deleteUnProductoResponse deleteUnProducto(e_commerce.siproe.deleteUnProductoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://siproe.com/deleteUnProducto", ReplyAction="*")]
+        System.Threading.Tasks.Task<e_commerce.siproe.deleteUnProductoResponse> deleteUnProductoAsync(e_commerce.siproe.deleteUnProductoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://siproe.com/deleteUnProveedor", ReplyAction="*")]
+        void deleteUnProveedor(int usuarioID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://siproe.com/deleteUnProveedor", ReplyAction="*")]
+        System.Threading.Tasks.Task deleteUnProveedorAsync(int usuarioID);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1045,6 +1080,132 @@ namespace e_commerce.siproe {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class extraerDatosRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="extraerDatos", Namespace="http://siproe.com/", Order=0)]
+        public e_commerce.siproe.extraerDatosRequestBody Body;
+        
+        public extraerDatosRequest() {
+        }
+        
+        public extraerDatosRequest(e_commerce.siproe.extraerDatosRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://siproe.com/")]
+    public partial class extraerDatosRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string extension;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string savePath;
+        
+        public extraerDatosRequestBody() {
+        }
+        
+        public extraerDatosRequestBody(string extension, string savePath) {
+            this.extension = extension;
+            this.savePath = savePath;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class extraerDatosResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="extraerDatosResponse", Namespace="http://siproe.com/", Order=0)]
+        public e_commerce.siproe.extraerDatosResponseBody Body;
+        
+        public extraerDatosResponse() {
+        }
+        
+        public extraerDatosResponse(e_commerce.siproe.extraerDatosResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class extraerDatosResponseBody {
+        
+        public extraerDatosResponseBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class deleteUnProductoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="deleteUnProducto", Namespace="http://siproe.com/", Order=0)]
+        public e_commerce.siproe.deleteUnProductoRequestBody Body;
+        
+        public deleteUnProductoRequest() {
+        }
+        
+        public deleteUnProductoRequest(e_commerce.siproe.deleteUnProductoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://siproe.com/")]
+    public partial class deleteUnProductoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string productoID;
+        
+        public deleteUnProductoRequestBody() {
+        }
+        
+        public deleteUnProductoRequestBody(string productoID) {
+            this.productoID = productoID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class deleteUnProductoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="deleteUnProductoResponse", Namespace="http://siproe.com/", Order=0)]
+        public e_commerce.siproe.deleteUnProductoResponseBody Body;
+        
+        public deleteUnProductoResponse() {
+        }
+        
+        public deleteUnProductoResponse(e_commerce.siproe.deleteUnProductoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class deleteUnProductoResponseBody {
+        
+        public deleteUnProductoResponseBody() {
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ServicioWebSoapChannel : e_commerce.siproe.ServicioWebSoap, System.ServiceModel.IClientChannel {
     }
@@ -1312,6 +1473,64 @@ namespace e_commerce.siproe {
             e_commerce.siproe.getCategoriaRequest inValue = new e_commerce.siproe.getCategoriaRequest();
             inValue.Body = new e_commerce.siproe.getCategoriaRequestBody();
             return ((e_commerce.siproe.ServicioWebSoap)(this)).getCategoriaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        e_commerce.siproe.extraerDatosResponse e_commerce.siproe.ServicioWebSoap.extraerDatos(e_commerce.siproe.extraerDatosRequest request) {
+            return base.Channel.extraerDatos(request);
+        }
+        
+        public void extraerDatos(string extension, string savePath) {
+            e_commerce.siproe.extraerDatosRequest inValue = new e_commerce.siproe.extraerDatosRequest();
+            inValue.Body = new e_commerce.siproe.extraerDatosRequestBody();
+            inValue.Body.extension = extension;
+            inValue.Body.savePath = savePath;
+            e_commerce.siproe.extraerDatosResponse retVal = ((e_commerce.siproe.ServicioWebSoap)(this)).extraerDatos(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<e_commerce.siproe.extraerDatosResponse> e_commerce.siproe.ServicioWebSoap.extraerDatosAsync(e_commerce.siproe.extraerDatosRequest request) {
+            return base.Channel.extraerDatosAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<e_commerce.siproe.extraerDatosResponse> extraerDatosAsync(string extension, string savePath) {
+            e_commerce.siproe.extraerDatosRequest inValue = new e_commerce.siproe.extraerDatosRequest();
+            inValue.Body = new e_commerce.siproe.extraerDatosRequestBody();
+            inValue.Body.extension = extension;
+            inValue.Body.savePath = savePath;
+            return ((e_commerce.siproe.ServicioWebSoap)(this)).extraerDatosAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        e_commerce.siproe.deleteUnProductoResponse e_commerce.siproe.ServicioWebSoap.deleteUnProducto(e_commerce.siproe.deleteUnProductoRequest request) {
+            return base.Channel.deleteUnProducto(request);
+        }
+        
+        public void deleteUnProducto(string productoID) {
+            e_commerce.siproe.deleteUnProductoRequest inValue = new e_commerce.siproe.deleteUnProductoRequest();
+            inValue.Body = new e_commerce.siproe.deleteUnProductoRequestBody();
+            inValue.Body.productoID = productoID;
+            e_commerce.siproe.deleteUnProductoResponse retVal = ((e_commerce.siproe.ServicioWebSoap)(this)).deleteUnProducto(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<e_commerce.siproe.deleteUnProductoResponse> e_commerce.siproe.ServicioWebSoap.deleteUnProductoAsync(e_commerce.siproe.deleteUnProductoRequest request) {
+            return base.Channel.deleteUnProductoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<e_commerce.siproe.deleteUnProductoResponse> deleteUnProductoAsync(string productoID) {
+            e_commerce.siproe.deleteUnProductoRequest inValue = new e_commerce.siproe.deleteUnProductoRequest();
+            inValue.Body = new e_commerce.siproe.deleteUnProductoRequestBody();
+            inValue.Body.productoID = productoID;
+            return ((e_commerce.siproe.ServicioWebSoap)(this)).deleteUnProductoAsync(inValue);
+        }
+        
+        public void deleteUnProveedor(int usuarioID) {
+            base.Channel.deleteUnProveedor(usuarioID);
+        }
+        
+        public System.Threading.Tasks.Task deleteUnProveedorAsync(int usuarioID) {
+            return base.Channel.deleteUnProveedorAsync(usuarioID);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace e_commerce.Models
 {
     public class Producto
     {
+        int id;
         String nombre;
         String descripcion;
         Decimal precio;
@@ -30,6 +31,7 @@ namespace e_commerce.Models
             this.cantidad = cantidad;
         }
 
+        public int Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
         public Decimal Precio { get => precio; set => precio = value; }
