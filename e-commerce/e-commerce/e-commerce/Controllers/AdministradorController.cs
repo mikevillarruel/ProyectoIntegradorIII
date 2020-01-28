@@ -26,6 +26,10 @@ namespace e_commerce.Controllers
             return lista;
         }
 
+        public ActionResult Reportes()
+        {
+            return View();
+        }
 
         public ActionResult DashBoard()
         {
