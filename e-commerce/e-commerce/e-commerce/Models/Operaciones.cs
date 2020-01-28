@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Oracle.DataAccess.Client;
 using System.Data;
+using System.IO;
 
 namespace e_commerce.Models
 {
@@ -219,8 +220,8 @@ namespace e_commerce.Models
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
                 oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "insert into tbl_producto (producto_id,categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,PRODUCTO_CANTIDAD,PRODUCTO_PRECIO,PRODUCTO_IMAGEN) " +
-                    "VALUES (3," + producto.Categoria + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio + ",'"+producto.Imagen+"')";
+                oracleCommand.CommandText = "insert into tbl_producto (categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,PRODUCTO_CANTIDAD,PRODUCTO_PRECIO,PRODUCTO_IMAGEN) " +
+                    "VALUES ("+ producto.Categoria + "," + "1" + ",'" + producto.Nombre + "','" + producto.Descripcion + "'," + producto.Cantidad + "," + producto.Precio + ",'"+producto.Imagen+"')";
                 oracleCommand.CommandType = CommandType.Text;
                 oracleCommand.ExecuteNonQuery();
 
@@ -261,5 +262,71 @@ namespace e_commerce.Models
                 }
                 return categorias;
             }
+
+        public void extraerDatos(String extension, String savePath)
+        {
+            String[] lectura;
+            String[] ID_CATEGORIA;
+            String[] ID_PROVEEDOR;
+            String[] NOMBRE_PRODUCTO;
+            String[] DESCRIPCION_PRODUCTO;
+            String[] IMAGEN_PRODUCTO;
+            String[] CANTIDAD_PRODUCTO;
+            String[] PRECIO_PRODUCTO;
+            lectura = File.ReadAllLines(savePath);
+            int numLineas = lectura.Length;
+            Char sep;
+
+            ID_CATEGORIA = new String[numLineas];
+            ID_PROVEEDOR = new String[numLineas];
+            NOMBRE_PRODUCTO = new String[numLineas];
+            DESCRIPCION_PRODUCTO = new String[numLineas];
+            IMAGEN_PRODUCTO = new String[numLineas];
+            CANTIDAD_PRODUCTO = new String[numLineas];
+            PRECIO_PRODUCTO = new String[numLineas];
+            
+
+            if (extension == ".txt")
+            {
+                sep = '|';
+            }
+            else
+            {
+                sep = ';';
+            }
+
+            for (int j = 0; j < lectura.Length; j++)
+            {
+                ID_CATEGORIA[j] = lectura[j].Split(sep)[0];
+                ID_PROVEEDOR[j] = lectura[j].Split(sep)[1];
+                NOMBRE_PRODUCTO[j] = lectura[j].Split(sep)[2];
+                DESCRIPCION_PRODUCTO[j] = lectura[j].Split(sep)[3];
+                IMAGEN_PRODUCTO[j] = lectura[j].Split(sep)[4];
+                CANTIDAD_PRODUCTO[j] = lectura[j].Split(sep)[5];
+                PRECIO_PRODUCTO[j] = lectura[j].Split(sep)[6];
+                
+            }
+            for (int n = 0; n < lectura.Length; n++)
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "insert into tbl_producto (categoria_id, usuario_id, PRODUCTO_NOMBRE, PRODUCTO_DESCRIPCION,PRODUCTO_IMAGEN,PRODUCTO_CANTIDAD,PRODUCTO_PRECIO) VALUES (:id_categoria,:id_proveedor,:nombre_producto,:descripcion_producto,:imagen_producto,:cantidad_producto,:precio_producto)";
+                cmd.CommandType = System.Data.CommandType.Text;
+                //valores de los parámetros
+                cmd.Parameters.Add(":id_categoria", ID_CATEGORIA[n]);
+                cmd.Parameters.Add(":id_proveedor", ID_PROVEEDOR[n]);
+                cmd.Parameters.Add(":nombre_producto", NOMBRE_PRODUCTO[n]);
+                cmd.Parameters.Add(":descripcion_producto", DESCRIPCION_PRODUCTO[n]);
+                cmd.Parameters.Add(":imagen_producto", IMAGEN_PRODUCTO[n]);
+                cmd.Parameters.Add(":cantidad_producto", CANTIDAD_PRODUCTO[n]);
+                cmd.Parameters.Add(":precio_producto", PRECIO_PRODUCTO[n]);
+                //cmd.ExecuteNonQuery();
+                OracleDataReader dr = cmd.ExecuteReader();
+
+            }
+
         }
+
+
     }
+}

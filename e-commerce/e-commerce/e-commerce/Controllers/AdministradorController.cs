@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
+
 
 
 namespace e_commerce.Controllers
@@ -23,6 +25,8 @@ namespace e_commerce.Controllers
             }
             return lista;
         }
+
+
         public ActionResult DashBoard()
         {
             return View();
@@ -62,6 +66,13 @@ namespace e_commerce.Controllers
 
 
         public ActionResult Productos()
+        {
+            List<Producto> productos = new List<Producto>();
+            productos = servicio.selectAllProductos();
+            return View(productos);
+        }
+
+        public ActionResult Comprar()
         {
             List<Producto> productos = new List<Producto>();
             productos = servicio.selectAllProductos();
@@ -116,5 +127,38 @@ namespace e_commerce.Controllers
             servicio.addProducto(producto);
             return RedirectToAction("Productos");
         }
+        /*
+        public ActionResult agregarCarrito(int productId)
+        {
+            var cart = new List<Carrito>();
+        }*/
+        public ActionResult subirArchivo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+            public ActionResult subirArchivo(Producto producto, HttpPostedFileBase file)
+        {
+            
+            String pic=null;
+            String ext = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+                ext= System.IO.Path.GetExtension(pic);
+                if ((ext == ".txt") || (ext == ".csv"))
+                {
+                    string path = System.IO.Path.Combine(Server.MapPath("~/ImgProducto/"), pic);
+                    // file is uploaded
+                    file.SaveAs(path);
+                    servicio.extraerDatos(ext, path);
+                }
+                    
+            }
+            return RedirectToAction("Productos");
+
+        }
+
     }
 }

@@ -1,0 +1,15 @@
+﻿@model e_commerce.siproe.Producto
+@{
+    ViewBag.Title = "subirArchivo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-group">
+    <div class="col-md-10">
+
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+        @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+    </div>
+</div>
+

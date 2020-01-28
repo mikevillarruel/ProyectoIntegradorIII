@@ -1,0 +1,70 @@
+﻿@model List<e_commerce.siproe.Producto>
+@{
+    ViewBag.Title = "Comprar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">COMPRAR PRODUCTOS</li>
+        </ol>
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Detalle del Producto
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Precio</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Precio</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td width="30%">
+                                        <img class="img-responsive" title="Click para ver detalles del producto"
+                                                     style="cursor:pointer;height:160px;width:100%"
+                                                     src="~/ImgProducto/@item.Imagen" />
+                                     </td>
+                                    <td>@item.Nombre</td>
+                                    <td>@item.Categoria</td>
+                                    <td>@item.Precio</td>
+                                    <td align="center"><button type="submit" class="pull-right" ><i class="fas fa-shopping-cart"></i></button></td>
+
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
