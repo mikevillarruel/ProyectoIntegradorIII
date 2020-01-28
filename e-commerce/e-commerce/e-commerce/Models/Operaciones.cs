@@ -10,8 +10,22 @@ namespace e_commerce.Models
 {
     public class Operaciones
     {
+
+        public string Encriptar(String cadena)
+        {
+            string result = string.Empty;
+            byte[] encryted = System.Text.Encoding.Unicode.GetBytes(cadena);
+            result = Convert.ToBase64String(encryted);
+            return result;
+        }
+
+
+
         public Proveedor usuarioPersona(String usuario, String contrasenia)
         {
+            //System.Windows.Forms.MessageBox.Show("Error" + contrasenia);
+            contrasenia = Encriptar(contrasenia);
+            //System.Windows.Forms.MessageBox.Show("Error" + contrasenia);
             List<Proveedor> proveedores = new List<Proveedor>();
             Proveedor us = new Proveedor();
             try
@@ -116,14 +130,15 @@ namespace e_commerce.Models
 
         public Boolean insertProveedor(Proveedor proveedor)
         {
+            proveedor.Contrasenia = Encriptar(proveedor.Contrasenia);
             try
             {
                 System.Windows.Forms.MessageBox.Show("" + proveedor.Nombre);
                 OracleConnection conn = Conexion.getInstancia().getConexion();
                 OracleCommand oracleCommand = conn.CreateCommand();
                 oracleCommand = conn.CreateCommand();
-                oracleCommand.CommandText = "insert into tbl_usuario (USUARIO_NOMBRE,USUARIO_APELLIDO, USUARIO_EMAIL,USUARIO_CONTRASENIA,USUARIO_TIPO) " +
-                    "VALUES ('"+proveedor.Nombre+"','"+proveedor.Apellido+"','"+proveedor.Email+"','"+proveedor.Contrasenia+"','"+proveedor.Tipo+"')";
+                oracleCommand.CommandText = "insert into tbl_usuario (USUARIO_NOMBRE,USUARIO_APELLIDO, USUARIO_EMAIL,USUARIO_CONTRASENIA,USUARIO_TIPO,USUARIO_ROL,TARJETA_ID) " +
+                    "VALUES ('"+proveedor.Nombre+"','"+proveedor.Apellido+"','"+proveedor.Email+"','"+proveedor.Contrasenia+"','"+proveedor.Tipo+ "','1','1')";
                 oracleCommand.CommandType = CommandType.Text;
                 oracleCommand.ExecuteNonQuery();
 

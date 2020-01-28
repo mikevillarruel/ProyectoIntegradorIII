@@ -5,8 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-
-
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace e_commerce.Controllers
 {
@@ -26,10 +26,217 @@ namespace e_commerce.Controllers
             return lista;
         }
 
-        public ActionResult Reportes()
+        public ActionResult ReporteGanancias()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ReporteGanancias(Proveedor proveedor)
+        {
+            Document doc = new Document(PageSize.LETTER);
+            // Indicamos donde vamos a guardar el documento
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@"D:\ganacias.pdf", FileMode.Create));
+
+            // Le colocamos el título y el autor
+            // **Nota: Esto no será visible en el documento
+            doc.AddTitle("Mi primer PDF");
+            doc.AddCreator("Roberto Torres");
+
+            // Abrimos el archivo
+            doc.Open();
+
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+
+            //LOGO
+            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance("https://uploads-ssl.webflow.com/575ef60509a5a7a9116d9f8c/58af733c8b893223458839e6_EGAFutura-adm-compras.png");
+            imagen.BorderWidth = 0;
+            imagen.Alignment = Element.ALIGN_CENTER;
+            imagen.ScaleAbsolute(100f, 100f);
+            doc.Add(imagen);
+
+
+            // Escribimos el encabezamiento en el documento
+            Paragraph p = new Paragraph("SIPROE");
+            p.Alignment = Element.ALIGN_CENTER;
+            doc.Add(p);
+            p = new Paragraph("REPORTE DE GANANCIA EN VENTAS");
+            p.Alignment = Element.ALIGN_CENTER;
+            doc.Add(p);
+            doc.Add(new Phrase("RUC: 10010040131589"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("Direccion: Av. Simon Bolivar N548"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("Email: atencionalcliente@siproe.com"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("www.siproe.com"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase(DateTime.Now + ""));
+            doc.Add(Chunk.NEWLINE);
+
+            // Creamos una tabla que contendrá el nombre, apellido y país
+            // de nuestros visitante.
+
+            List<Producto> productos = servicio.selectAllProductos();
+            PdfPTable tblPrueba = new PdfPTable(4);
+            tblPrueba.WidthPercentage = 100;
+
+            // Configuramos el título de las columnas de la tabla
+            PdfPCell clNombre = new PdfPCell(new Phrase("Nombre", _standardFont));
+            clNombre.BorderWidth = 0;
+            clNombre.BorderWidthBottom = 0.75f;
+
+            PdfPCell clApellido = new PdfPCell(new Phrase("Precio", _standardFont));
+            clApellido.BorderWidth = 0;
+            clApellido.BorderWidthBottom = 0.75f;
+
+            PdfPCell clPais = new PdfPCell(new Phrase("Cantidad", _standardFont));
+            clPais.BorderWidth = 0;
+            clPais.BorderWidthBottom = 0.75f;
+
+            PdfPCell clGanancia = new PdfPCell(new Phrase("Ganancia", _standardFont));
+            clGanancia.BorderWidth = 0;
+            clGanancia.BorderWidthBottom = 0.75f;
+
+            // Añadimos las celdas a la tabla
+            tblPrueba.AddCell(clNombre);
+            tblPrueba.AddCell(clApellido);
+            tblPrueba.AddCell(clPais);
+            tblPrueba.AddCell(clGanancia);
+
+            decimal ganancia = 0;
+
+            for (int i = 0; i < productos.Count; i++)
+            {
+                clNombre = new PdfPCell(new Phrase(productos[i].Nombre, _standardFont));
+                clNombre.BorderWidth = 0;
+
+                clApellido = new PdfPCell(new Phrase(productos[i].Precio + "", _standardFont));
+                clApellido.BorderWidth = 0;
+
+                clPais = new PdfPCell(new Phrase(productos[i].Cantidad + "", _standardFont));
+                clPais.BorderWidth = 0;
+
+                clGanancia = new PdfPCell(new Phrase(productos[i].Precio * productos[i].Cantidad * (decimal)0.1 + "", _standardFont));
+                clGanancia.BorderWidth = 0;
+
+                // Añadimos las celdas a la tabla
+                tblPrueba.AddCell(clNombre);
+                tblPrueba.AddCell(clApellido);
+                tblPrueba.AddCell(clPais);
+                tblPrueba.AddCell(clGanancia);
+
+                ganancia = ganancia + productos[i].Precio * productos[i].Cantidad * (decimal)0.1;
+
+            }
+
+            doc.Add(tblPrueba);
+
+            Paragraph f = new Paragraph("GANANCIA TOTAL: $" + ganancia);
+            f.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(f);
+            doc.Add(Chunk.NEWLINE);
+
+            doc.Close();
+            writer.Close();
+            return RedirectToAction("ReporteGanancias");
+        }
+
+            public ActionResult Reportes()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Reportes(Proveedor proveedor)
+        {
+            Document doc = new Document(PageSize.LETTER);
+            // Indicamos donde vamos a guardar el documento
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@"D:\ventas.pdf", FileMode.Create));
+
+            // Le colocamos el título y el autor
+            // **Nota: Esto no será visible en el documento
+            doc.AddTitle("Mi primer PDF");
+            doc.AddCreator("Roberto Torres");
+
+            // Abrimos el archivo
+            doc.Open();
+
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+
+            //LOGO
+            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance("https://uploads-ssl.webflow.com/575ef60509a5a7a9116d9f8c/58af733c8b893223458839e6_EGAFutura-adm-compras.png");
+            imagen.BorderWidth = 0;
+            imagen.Alignment = Element.ALIGN_CENTER;
+            imagen.ScaleAbsolute(100f, 100f);
+            doc.Add(imagen);
+
+
+            // Escribimos el encabezamiento en el documento
+            Paragraph p = new Paragraph("SIPROE");
+            p.Alignment = Element.ALIGN_CENTER;
+            doc.Add(p);
+            p = new Paragraph("REPORTE DE VENTAS");
+            p.Alignment = Element.ALIGN_CENTER;
+            doc.Add(p);
+            doc.Add(new Phrase("RUC: 10010040131589"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("Direccion: Av. Simon Bolivar N548"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("Email: atencionalcliente@siproe.com"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("www.siproe.com"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase(DateTime.Now + ""));
+            doc.Add(Chunk.NEWLINE);
+
+            // Creamos una tabla que contendrá el nombre, apellido y país
+            // de nuestros visitante.
+
+            List<Producto> productos = servicio.selectAllProductos();
+            PdfPTable tblPrueba = new PdfPTable(3);
+            tblPrueba.WidthPercentage = 100;
+
+            // Configuramos el título de las columnas de la tabla
+            PdfPCell clNombre = new PdfPCell(new Phrase("Nombre", _standardFont));
+            clNombre.BorderWidth = 0;
+            clNombre.BorderWidthBottom = 0.75f;
+
+            PdfPCell clApellido = new PdfPCell(new Phrase("Precio", _standardFont));
+            clApellido.BorderWidth = 0;
+            clApellido.BorderWidthBottom = 0.75f;
+
+            PdfPCell clPais = new PdfPCell(new Phrase("Cantidad", _standardFont));
+            clPais.BorderWidth = 0;
+            clPais.BorderWidthBottom = 0.75f;
+
+            // Añadimos las celdas a la tabla
+            tblPrueba.AddCell(clNombre);
+            tblPrueba.AddCell(clApellido);
+            tblPrueba.AddCell(clPais);
+
+            for (int i = 0; i < productos.Count; i++)
+            {
+                clNombre = new PdfPCell(new Phrase(productos[i].Nombre, _standardFont));
+                clNombre.BorderWidth = 0;
+
+                clApellido = new PdfPCell(new Phrase(productos[i].Precio + "", _standardFont));
+                clApellido.BorderWidth = 0;
+
+                clPais = new PdfPCell(new Phrase(productos[i].Cantidad + "", _standardFont));
+                clPais.BorderWidth = 0;
+
+                // Añadimos las celdas a la tabla
+                tblPrueba.AddCell(clNombre);
+                tblPrueba.AddCell(clApellido);
+                tblPrueba.AddCell(clPais);
+            }
+
+            doc.Add(tblPrueba);
+
+            doc.Close();
+            writer.Close();
+            return RedirectToAction("Reportes");
+        }
+
 
         public ActionResult DashBoard()
         {

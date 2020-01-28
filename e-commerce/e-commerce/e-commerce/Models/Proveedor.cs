@@ -14,6 +14,7 @@ namespace e_commerce.Models
         String email;
         String contrasenia;
         String tipo;
+        int rol;
 
         public Proveedor()
         {
@@ -44,6 +45,7 @@ namespace e_commerce.Models
         public string Email { get => email; set => email = value; }
         public string Contrasenia { get => contrasenia; set => contrasenia = value; }
         public string Tipo { get => tipo; set => tipo = value; }
+        public int Rol { get => rol; set => rol = value; }
 
 
     }

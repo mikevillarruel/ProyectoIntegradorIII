@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Oracle.DataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -1752,6 +1755,8 @@
     <Content Include="Views\Acceso\Registrar.cshtml" />
     <Content Include="Views\Administrador\Comprar.cshtml" />
     <Content Include="Views\Administrador\subirArchivo.cshtml" />
+    <Content Include="Views\Administrador\Reportes.cshtml" />
+    <Content Include="Views\Administrador\ReporteGanancias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
