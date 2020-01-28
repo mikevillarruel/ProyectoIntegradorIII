@@ -1,17 +1,36 @@
-﻿@model e_commerce.siproe.Producto
+﻿@model e_commerce.Models.Producto
+
 @{
     ViewBag.Title = "subirArchivo";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>subirArchivo</h2>
-<div class="form-group">
-    <div class="col-md-10">
+<div class="container">
+    @using (Html.BeginForm("subirArchivo","Administrador",FormMethod.Post,new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
-        @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Subir Productos desde Archivo</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <input type="file" name="file" id="file" style="width: 100%;" />
+                @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Subir" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
 </div>
-
-

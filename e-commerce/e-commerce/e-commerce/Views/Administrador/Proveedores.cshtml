@@ -52,8 +52,10 @@
                             <td>@item.Nombre</td>
                             <td>@item.Email</td>
                             <td>@item.Contrasenia</td>
-                            <td>@Html.ActionLink("Editar", "modificarProveedor", new { id = item.Id })</td>
-                            <td>@Html.ActionLink("Eliminar", "eliminarProveedor", new { id = item.Id })</td>
+                            <td>
+                                @Html.ActionLink("Editar", "modificarProveedor", new { id = item.Id })
+                                                        @Html.ActionLink("Eliminar", "eliminarProveedor", new { id = item.Id })
+                                                    </td>
 
                         </tr>
                         }

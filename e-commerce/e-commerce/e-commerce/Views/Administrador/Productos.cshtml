@@ -58,8 +58,8 @@
                             <td>@item.Descripcion</td>
                             <td>@item.Categoria</td>
                             <td>@item.Precio</td>
-                            <td>@Html.ActionLink("Editar", "modificarProducto", new { productoNombre = item.Nombre })</td>
-                            <td>@Html.ActionLink("Eliminar", "eliminarProducto", new { productoNombre = item.Nombre })</td>
+                            <td>@Html.ActionLink("Editar", "modificarProducto", new { productoNombre = item.Nombre })
+                            @Html.ActionLink("Eliminar", "eliminarProducto", new { productoNombre = item.Nombre })</td>
 
 
                         </tr>

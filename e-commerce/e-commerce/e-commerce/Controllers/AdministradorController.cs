@@ -138,15 +138,16 @@ namespace e_commerce.Controllers
         }
 
         [HttpPost]
-            public ActionResult subirArchivo(Producto producto, HttpPostedFileBase file)
+        public ActionResult subirArchivo(Producto producto, HttpPostedFileBase file)
         {
-            System.Windows.Forms.MessageBox.Show("Entro");
+            //System.Windows.Forms.MessageBox.Show("Entro");
             String pic=null;
             String ext = null;
             if (file != null)
             {
                 pic = System.IO.Path.GetFileName(file.FileName);
                 ext= System.IO.Path.GetExtension(pic);
+                System.Windows.Forms.MessageBox.Show(pic + ext);
                 if ((ext == ".txt") || (ext == ".csv"))
                 {
                     string path = System.IO.Path.Combine(Server.MapPath("~/ImgProducto/"), pic);
@@ -154,7 +155,15 @@ namespace e_commerce.Controllers
                     file.SaveAs(path);
                     servicio.extraerDatos(ext, path);
                 }
-                    
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show(pic);
+                }
+
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("null");
             }
             return RedirectToAction("Productos");
 

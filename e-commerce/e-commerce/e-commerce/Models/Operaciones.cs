@@ -301,7 +301,7 @@ namespace e_commerce.Models
                 ID_PROVEEDOR[j] = lectura[j].Split(sep)[1];
                 NOMBRE_PRODUCTO[j] = lectura[j].Split(sep)[2];
                 DESCRIPCION_PRODUCTO[j] = lectura[j].Split(sep)[3];
-                IMAGEN_PRODUCTO[j] = lectura[j].Split(sep)[4];
+                IMAGEN_PRODUCTO[j] = lectura[j].Split(sep)[4];  
                 CANTIDAD_PRODUCTO[j] = lectura[j].Split(sep)[5];
                 PRECIO_PRODUCTO[j] = lectura[j].Split(sep)[6];
                 
