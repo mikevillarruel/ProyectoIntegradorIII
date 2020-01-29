@@ -138,7 +138,7 @@ namespace e_commerce.Models
                 OracleCommand oracleCommand = conn.CreateCommand();
                 oracleCommand = conn.CreateCommand();
                 oracleCommand.CommandText = "insert into tbl_usuario (USUARIO_NOMBRE,USUARIO_APELLIDO, USUARIO_EMAIL,USUARIO_CONTRASENIA,USUARIO_TIPO,USUARIO_ROL,TARJETA_ID) " +
-                    "VALUES ('"+proveedor.Nombre+"','"+proveedor.Apellido+"','"+proveedor.Email+"','"+proveedor.Contrasenia+"','"+proveedor.Tipo+ "','1','1')";
+                    "VALUES ('"+proveedor.Nombre+"','"+proveedor.Apellido+"','"+proveedor.Email+"','"+proveedor.Contrasenia+"','"+proveedor.Tipo+ "','"+proveedor.Rol+"','1')";
                 oracleCommand.CommandType = CommandType.Text;
                 oracleCommand.ExecuteNonQuery();
 
@@ -277,6 +277,34 @@ namespace e_commerce.Models
                 }
                 return categorias;
             }
+
+        public List<Rol> getRoles()
+        {
+            List<Rol> categorias = new List<Rol>();
+            try
+            {
+                OracleConnection conn = Conexion.getInstancia().getConexion();
+                OracleCommand oracleCommand = conn.CreateCommand();
+                oracleCommand.CommandText = "SELECT * FROM TBL_ROL";
+                oracleCommand.CommandType = CommandType.Text;
+                OracleDataReader odr = oracleCommand.ExecuteReader();
+                int i = 0;
+                while (odr.Read())
+                {
+                    Rol cat = new Rol();
+                    cat.Id = (int)odr.GetDecimal(0);
+                    cat.Nombre = odr.GetString(1);
+                    categorias.Add(cat);
+                    i = i + 1;
+                }
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("ALGO PASA" + e);
+                return categorias;
+            }
+            return categorias;
+        }
 
         public void extraerDatos(String extension, String savePath)
         {

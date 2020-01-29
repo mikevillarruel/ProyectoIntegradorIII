@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using e_commerce.siproe;
 
@@ -39,25 +40,41 @@ namespace e_commerce.Controllers
                 return View();
             }
         }
-
+        public List<SelectListItem> obtenerRoles()
+        {
+            List<SelectListItem> lista = new List<SelectListItem>();
+            List<Models.Rol> cat = new List<Models.Rol>();
+            Models.Operaciones op = new Models.Operaciones();
+            cat = op.getRoles();
+            foreach (var item in cat)
+            {
+                lista.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Nombre });
+            }
+            return lista;
+        }
         public ActionResult Registrar()
         {
+            
+            ViewBag.ListRoles = obtenerRoles();
             return View();
         }
         [HttpPost]
         public ActionResult Registrar(Proveedor proveedor)
         {
             
-            if (proveedor.Tipo.Equals("P") || proveedor.Tipo.Equals("D"))
+            if (proveedor.Rol==1)
             {
+                proveedor.Tipo = "A";
                 servicio.insertProveedor(proveedor);
             }
-            else if (proveedor.Tipo.Equals("C"))
+            else if (proveedor.Rol==2)
             {
+                proveedor.Tipo = "P";
                 servicio.insertProveedor(proveedor);
             }
-            else if (proveedor.Tipo.Equals("A"))
+            else 
             {
+                proveedor.Tipo = "C";
                 servicio.insertProveedor(proveedor);
             }
             ViewBag.Message = "";
